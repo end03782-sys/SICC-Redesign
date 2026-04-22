@@ -1,0 +1,953 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth; /* 点击导航栏平滑跳转 */
+    -webkit-font-smoothing: antialiased; /* 文字抗锯齿 */
+}
+
+body {
+    background-color: var(--dark-bg);
+    line-height: 1.6;
+    letter-spacing: 0.02em; /* 稍微拉大字间距，更有现代感 */
+}
+
+/* 统一样式：让所有 Card 类在悬停时都有细微的光泽变化 */
+.exhibition-card, .venue-card, .service-item, .news-card, .enquiry-form {
+    transition: var(--transition-smooth);
+    border: 1px solid var(--glass-border);
+}
+
+.exhibition-card:hover, .venue-card:hover, .service-item:hover, .news-card:hover {
+    border-color: rgba(255, 193, 7, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 导航栏主体 */
+.navbar {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 5px;
+  max-height: 4rem;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: rgba(10, 10, 10, 0.9);
+  background-color: var(--neutral-heading, 0.9);
+  transition: background 0.3s ease;
+}
+
+.nav-logo img{
+  height: 75px;
+  width: auto;
+  padding-left: 50px;
+  display: block;
+
+}
+
+/* 导航链接列表 */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xl); /* 使用你的变量定义间距 */
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-left: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--neutral-white);
+    font-family: var(--font-family-primary); /* 使用 Montserrat */
+    font-weight: 500;
+    font-size: var(--text-sm);
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-brown-main);
+}
+
+/* 搜索框样式 */
+.nav-search {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--neutral-border);
+    border-radius: var(--border-radius-full);
+    padding: 4px 12px;
+    background: var(--neutral-surface);
+    max-width: 200px;
+    max-height: 28px;
+    margin-right: 3%;
+    margin-top: 10px;
+}
+
+.nav-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: var(--text-xs);
+    padding: 4px;
+    max-height: 32px;
+}
+
+.nav-search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-btn-icon {
+    width: 18px;  /* 根据导航栏高度微调 */
+    height: 18px;
+    display: block;
+}
+
+.hero-section {
+    width: 100%;
+    height: 700px;
+    
+    /* 关键修改：将渐变改为从左往右，并加深左侧颜色以保护文字 */
+    background-image: 
+        linear-gradient(to right, rgba(28, 27, 25, 0.9) 0%, rgba(28, 27, 25, 0.2) 60%, transparent 100%), 
+        url('../image/sicc.webp'); 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* 垂直依然居中 */
+    align-items: flex-start;    /* 水平靠左对齐 */
+    
+    /* 增加左边距，建议与导航栏 Logo 的对齐线一致 */
+    padding-left: 8%; 
+    box-sizing: border-box;
+}
+
+.hero-content {
+    text-align: left; /* 确保多行文字本身也是左对齐 */
+    max-width: 1000px; /* 限制宽度，防止文字横跨整个屏幕影响阅读 */
+    padding-left: 5%;
+}
+
+.hero-content h1 {
+    font-family: 'Montserrat', sans-serif; /* 使用你引入的高级字体 */
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    max-width: 1000px; /* 限制宽度让标题换行，更好看 */
+    text-transform: uppercase; /* 强制大写增加震撼感 */
+    color: #FFFFFF;
+    /* 增加一点文字阴影，让它在背景上更突出 */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
+}
+
+.hero-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    max-width: 700px; /* 限制宽度让长句子换行，更好看 */
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.exhibition-section {
+    padding: 80px 8%; /* 左右边距与 Hero 一致，保持 8% */
+    background-color: #0a0a0a; /* 稍微深一点的背景 */
+    color: var(--neutral-border);
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* 下划线装饰 */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 550px;
+    height: 4px;
+    background: #c5a059; /* 使用你的 Logo 金色 */
+    margin-top: 10px;
+}
+
+.exhibition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 响应式网格 */
+    gap: 50px;
+}
+
+.exhibition-card {
+    background: var(--neutral-surface);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.exhibition-card:hover {
+    transform: translateY(-10px); /* 悬停浮起效果 */
+}
+
+.card-image{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--neutral-border);
+    padding: 10px 0;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 保持图片比例，适应容器 */
+    display: block; /* 消除图片下方的空白 */
+    max-height: 450px; /* [建议] 限制最高高度，防止超级高的海报把卡片撑得太长 */
+    padding-bottom: 10px; /* 给图片底部增加一些空间，避免和卡片底部挨得太近 */
+    border-bottom: 2px solid var(--neutral-bodytext);
+}
+
+.card-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    color: var(--neutral-heading);
+    background-color: var(--neutral-border);
+}
+
+.card-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    min-height: 3em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-info p {
+    font-family: 'inter', sans-serif;
+    font-size: 16px;
+    color: var(--neutral-bodytext);
+    margin-top: o;
+}
+
+.btn-secondary {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--neutral-surface);
+    background-color: var(--accent-sunset-gold-main);
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    padding: 10px 20px;
+    
+}
+
+.btn-secondary:hover {
+    border-bottom: 1px solid #c5a059;
+    background-color: var(--accent-sunset-gold-main-hover);
+}
+
+.events-calendar-section {
+    padding: 80px 8%;
+    background-color: #0a0a0a; /* 深色背景 */
+    color: var(--neutral-white);
+}
+
+.events-calendar-section .section-title::after {
+    width: 280px; /* 日历部分的下划线稍微短一点，视觉上更轻盈 */
+}
+
+.calendar-container {
+    display: flex;
+    gap: 50px;
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 左侧日历样式 */
+.calendar-grid-wrapper {
+    flex: 1.5;
+    max-width: 400px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.calendar-days-header, .calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.calendar-days-header span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #c5a059; /* 你的 Logo 金色 */
+    padding-bottom: 15px;
+}
+
+.calendar-days-grid {
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 强制 7 列，代表周日到周六 */
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day {
+    aspect-ratio: 1; /* 保持正方形 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    position: relative; /* 为 event-dot 小圆点定位 */
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+.day.today {
+    background-color: #c5a059; /* 金色 */
+    color: #000;
+    font-weight: bold;
+}
+
+.cal-btn{
+    background: none;
+    border: 2px solid #c5a059;
+    color: #c5a059;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 右侧详情样式 */
+.event-details-list {
+    font-family: 'Montserrat', sans-serif;
+    flex: 1;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 30px;
+}
+
+.event-item {
+    display: flex;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.event-item .time {
+    color: #c5a059;
+    font-size: 14px;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+.event-item h5 { 
+    font-size: 18px; margin-bottom: 5px; 
+}
+
+.event-item p { 
+    font-size: 14px; opacity: 0.6; 
+}
+
+.day.selected { 
+    border: 1px solid #c5a059; 
+}
+
+/* 1. 基础 Section */
+.visit-section {
+    position: relative;
+    padding: 80px 08%;
+    background-color: #0a0a0a;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.visit-section .section-title {
+    color: var(--neutral-white);
+}
+
+.visit-section .section-title::after {
+    width: 260px; /* 访问部分的下划线稍微短一点，视觉上更轻盈 */
+}
+
+/* 2. 视频包装层：锁定在右侧 */
+.video-background-wrapper {
+    position: absolute;
+    top: 50%;         /* 垂直居中 */
+    right: 5%;        /* 距离右边留一点间距，看起来更精致 */
+    transform: translateY(-50%); 
+    width: 90%;
+    height: auto;     /* 高度随比例自适应 */
+    aspect-ratio: 16 / 9; /* 锁定 16:9 比例，防止变形 */
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 16px; /* 可选：给视频加一点圆角 */
+}
+
+.bg-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 关键：确保能看完整个视频画面，不裁剪 */
+    opacity: 0.9;        /* 既然变小了，可以稍微调亮一点 */
+}
+
+/* 3. 关键遮罩：消除生硬边界 */
+.video-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 100%;
+    /* 调整渐变，让它在视频左侧边缘消失 */
+    background: linear-gradient(to right, 
+        #0a0a0a 0%, 
+        #0a0a0a 15%, 
+        rgba(28, 27, 25, 0.2) 40%, 
+        transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* 4. 容器对齐：必须与 Events Calendar 的对齐逻辑一致 */
+.visit-section .container {
+    max-width: 1200px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 5. 布局排版 */
+.visit-content-area {
+    display: flex;
+    justify-content: flex-start; /* 强制内容靠左 */
+    margin-top: 40px;
+}
+
+.info-stack-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 380px; /* 固定宽度，防止被视频挤压 */
+}
+
+/* 6. 卡片美化 */
+.solid-info-card {
+    background-color: rgba(38, 37, 35, 0.9);
+    border-left: 4px solid #d4a017;
+    padding: 20px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.solid-info-card:hover {
+    transform: translateX(10px); /* 悬停微动，增加交互感 */
+}
+
+.label-gold {
+    color: #d4a017;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.solid-info-card p{
+    font-family: 'inter', sans-serif;
+    color: var(--neutral-white);
+}
+
+.gold-download-btn{
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--neutral-surface);
+    background-color: var(--primary-brown-main); /* 金色 */
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    padding: 10px 20px;
+}
+
+.gold-download-btn:hover {
+    background-color: var(--primary-brown-main-hover); /* 稍微亮一点的金 */
+    transform: translateY(-2px);
+    transition: 0.3s;
+}
+
+/* --- Venues Section 整体容器 --- */
+.venues-section {
+    padding: 80px 8%;
+    background-color: #0a0a0a; /* 深度黑，衔接视频背景 */
+    color: #ffffff;
+}
+.venues-section .section-title::after {
+    width: 345px; /* 场馆部分的下划线稍微短一点，视觉上更轻盈 */
+}
+/* --- 场馆网格布局 --- */
+.venues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* --- 场馆卡片设计 --- */
+.venue-card {
+    background: rgba(255, 255, 255, 0.03); /* 极淡的透明度 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+.venue-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-color: #ffc107; /* 悬停时边框变色，呼应你的主题黄 */
+}
+
+/* --- 图片区域 --- */
+.venue-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.venue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.venue-card:hover .venue-image img {
+    transform: scale(1.1);
+}
+
+.venue-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ffc107;
+    color: #000;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* --- 文字内容区 --- */
+.venue-info {
+    padding: 25px;
+}
+
+.venue-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffc107; /* 标题使用主题黄 */
+}
+
+.venue-info p {
+    font-family: 'inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+/* --- 场馆参数 (Pax/Size) --- */
+.venue-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.venue-meta span {
+    font-family: 'inter', sans-serif;
+    font-size: 0.85rem;
+    color: #aaaaaa;
+}
+
+.venue-meta strong {
+    display: block;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+/* --- 按钮设计 --- */
+.btn-outline {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #ffc107;
+    color: #ffc107;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: #ffc107;
+    color: #000;
+}
+
+.services-section {
+    padding: 80px 8%;
+    background-color: #0d0d0d; /* 稍微比 Venues 深一点点，做出层级 */
+    text-align: center;
+}
+
+.services-header {
+    margin-bottom: 60px;
+}
+
+.services-section .section-title::after{
+    width: 350px; /* 服务部分的下划线稍微短一点，视觉上更轻盈 */
+    background: #c5a059;
+    margin: 20px auto 0; /* 居中下划线，并增加与标题的间距 */
+}
+
+.services-section .section-title{
+    color: var(--neutral-white);
+}
+
+.services-section .section-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--text-md);
+    color: #888;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+}
+
+.service-item {
+    padding: 40px 30px;
+    background: var(--primary-brown-light);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    background: var(--primary-brown-light-hover); /* 淡淡的主题黄透明背景 */
+    border-color: var(--accent-sunset-gold-light-active);
+    transform: scale(1.02);
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.service-icon img {
+    width: 64px;
+    height: 64px;
+}
+
+.service-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.service-item p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--neutral-bodytext);
+    line-height: 1.6;
+}
+
+.news-section {
+    padding: 80px 8%;
+    background-color: #0a0a0a;
+}
+
+.news-header {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.news-section .section-title::after {
+    width: 270px; /* 新闻部分的下划线稍微短一点，视觉上更轻盈 */
+}
+
+.news-section .section-title {
+    color: var(--neutral-white);
+    margin: 0;
+}
+
+.view-all {
+    color: #ffc107;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+
+.view-all:hover {
+    opacity: 0.8;
+}
+
+/* --- 横向列表核心配置 --- */
+.news-horizontal-list {
+    display: flex;
+    gap: 80px;
+    overflow-x: auto; /* 在小屏幕或内容多时允许横向滚动 */
+    padding-bottom: 20px;
+}
+
+/* 隐藏滚动条（可选，保持整洁） */
+.news-horizontal-list::-webkit-scrollbar {
+    height: 4px;
+}
+.news-horizontal-list::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+.news-card {
+    flex: 0 0 350px; /* 固定宽度，不收缩 */
+    background: #161616;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-image-wrapper {
+    position: relative;
+    height: 200px;
+}
+
+.news-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #ffc107;
+    color: #000;
+    padding: 4px 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--text-xs);
+    font-weight: 600;
+}
+
+.news-content {
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.news-category {
+    font-size: var(--text-xs);
+    color: #ffc107;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.news-content h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    color: #fff;
+    display: -webkit-box; /* 标题超过两行自动打省略号 */
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-content p {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.5;
+}
+
+.contact-section {
+    padding: 100px 10%;
+    background-color: #0d0d0d;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info p {
+    font-family: 'Inter', sans-serif;
+    color: var(--neutral-white);
+    font-size: var(--text-sm);
+    margin-top: 5px;
+}
+
+.contact-info .section-title {
+    text-align: left;
+    margin-bottom: 20px;
+    color : var(--neutral-white);
+}
+
+.contact-info .section-title::after {
+    width: 460px; /* 联系部分的下划线稍微短一点，视觉上更轻盈 */
+}
+
+.method-item {
+    margin-top: 30px;
+}
+
+.method-label {
+    color: #ffc107;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.method-item p {
+    font-family: 'Inter', sans-serif;
+    color: var(--neutral-white);
+    font-size: var(--text-sm);
+}
+
+/* --- 表单样式 --- */
+.enquiry-form {
+    flex: 0 0 500px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    color: var(--neutral-bodytext);
+}
+
+.enquiry-form select {
+    color: #ffffff; /* 选中后的文字颜色 */
+    background-color: #161616; /* 整个选择框的背景 */
+}
+
+/* 强制修改下拉列表项的样式 */
+.enquiry-form select option {
+    background-color: #161616; /* 下拉菜单的背景色 */
+    color: #ffffff; /* 下拉菜单的文字颜色 */
+    padding: 10px;
+}
+.enquiry-form input, 
+.enquiry-form select, 
+.enquiry-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 0;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.enquiry-form input:focus, 
+.enquiry-form textarea:focus {
+    border-color: #ffc107;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #ffc107;
+    border: none;
+    color: #000;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #e5ad00;
+    transform: translateY(-2px);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px; /* 图标之间的间距 */
+    margin-top: 15px; /* 与上方地址的距离 */
+}
+
+.social-icon img {
+    width: 48px; /* 图标大小控制 */
+    height: 48px;
+    opacity: 0.8;
+}
+
+.social-icon img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    transition: 0.3s;
+}

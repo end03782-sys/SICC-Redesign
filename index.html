@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+        Redesign SICC
+    </title>
+    <link rel="stylesheet" href="Styles/tokens.css">
+    <link rel="stylesheet" href="Styles/RedesignSICC.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="Icon" type="Icon/png" href="Icon/Frame 1.png">
+    
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+          <img src="Icon/LOGO.png" alt="SICC Logo">
+      </div>
+
+       <ul class="nav-links">
+        <li>
+            <a href="#top">Home</a>
+        </li>
+        <li>
+            <a href="#exhibition">Exhibition</a>
+        </li>
+        <li>
+            <a href="#events">Event</a>
+        </li>
+        <li>
+            <a href="#visit">Visit</a>
+        </li>
+        <li>
+            <a href="#venues">Venues</a>
+        </li>
+        <li>
+            <a href="#news">About</a>
+        </li>
+    </ul>
+
+      <div class="nav-search">
+          <input type="text" placeholder="Search...">
+          <button type="submit">
+            <img src="Icon/search.png" alt="Search" class="search-btn-icon">
+          </button>
+      </div>
+    </nav>
+
+    <div class="hero-section" id="top">
+      <div class="hero-content">
+        <h1 >SABAH INTERNATIONAL CONVENTION CENTRE</h1>
+        <p>The Largest Waterfront Purpose-Built Convention, Exhibition & Entertainment Centre in East Malaysia.</p>
+      </div>
+    </div>
+
+    <section class="exhibition-section" id="exhibition">
+      <h2 class="section-title">Current & Upcoming Exhibitions</h2>
+        
+        <div class="exhibition-grid">
+            <div class="exhibition-card">
+                <div class="card-image">
+                    <img src="image/68d10d4ad4022ab251430459_25th Sabah Hospitality Fiesta & Expo Artwork.png" alt="Exhibition 1">
+                </div>
+                <div class="card-info">
+                    <h3>25th Sabah Hospitality Fiesta</h3>
+                    <p>20-22 April 2026</p>
+                    <button href="#" class="btn-secondary">Learn More</button>
+                </div>
+            </div>
+
+            <div class="exhibition-card">
+                <div class="card-image">
+                    <img src="/image/699bab9d22dbc13944766d79_WhatsApp Image 2026-02-23 at 9.09.48 AM.jpeg" alt="Exhibition 2">
+                </div>
+                <div class="card-info">
+                    <h3>Design & Deliver Creating Effective Internal Training Programs for Housekeeping</h3>
+                    <p>15-18 May 2026</p>
+                    <button href="#" class="btn-secondary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="events-calendar-section" id="events">
+      <h2 class="section-title">Events Calendar</h2>
+      
+      <div class="calendar-container">
+          <div class="calendar-grid-wrapper">
+              <div class="calendar-header">
+                  <button class="cal-btn">&lt;</button>
+                  <h3>April 2026</h3>
+                  <button class="cal-btn">&gt;</button>
+              </div>
+              <div class="calendar-days-header">
+                  <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+              </div>
+              <div class="calendar-days-grid" id="calendarGrid"></div>
+          </div>
+
+          <div class="event-details-list">
+              <h4>Events on 21 April 2026</h4>
+              <div class="event-item">
+                  <div class="time">09:00 AM</div>
+                  <div class="info">
+                      <h5>Sabah Hospitality Fiesta - Day 2</h5>
+                      <p>Level 2, Exhibition Hall</p>
+                  </div>
+              </div>
+              <div class="event-item">
+                  <div class="time">02:30 PM</div>
+                  <div class="info">
+                      <h5>International Tourism Summit</h5>
+                      <p>Level 3, Sipadan Hall</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <script>
+    // 1. 先定义数据和全局变量 (必须放在最前面)
+    const eventData = {
+        "2026-04-20": [{ time: "10:00 AM", title: "Tech Design Workshop", location: "Room 101" }],
+        "2026-04-21": [{ time: "09:00 AM", title: "Sabah Hospitality Fiesta", location: "Exhibition Hall" }],
+        "2026-04-22": [{ time: "02:30 PM", title: "Digital Creative Expo", location: "Level 3" }],
+        "2026-05-01": [{ time: "11:00 AM", title: "May Day Special Event", location: "SICC Plaza" }]
+    };
+
+    let currentMonth = 3; 
+    let currentYear = 2026;
+
+    // 2. 核心渲染函数 (独立出来)
+    function renderCalendar(month, year) {
+        const grid = document.getElementById('calendarGrid');
+        const monthYearText = document.querySelector('.calendar-header h3');
+        grid.innerHTML = ""; 
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        monthYearText.innerText = `${monthNames[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDay; i++) {
+            const emptyDiv = document.createElement('div');
+            emptyDiv.classList.add('day', 'empty');
+            grid.appendChild(emptyDiv);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayDiv = document.createElement('div');
+            const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            
+            dayDiv.classList.add('day');
+            dayDiv.innerText = day;
+
+            if (eventData[dateKey]) dayDiv.classList.add('event-dot');
+
+            dayDiv.onclick = () => {
+                document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+                dayDiv.classList.add('selected'); // 建议用 class 控制样式
+                updateEvents(dateKey);
+            };
+
+            grid.appendChild(dayDiv);
+        }
+    } // 这里闭合 renderCalendar
+
+    // 3. 更新事件函数 (独立出来，不要写在 renderCalendar 里面)
+    function updateEvents(dateKey) {
+        const detailList = document.querySelector('.event-details-list');
+        const events = eventData[dateKey] || [];
+        
+        let html = `<h4>Events on ${dateKey}</h4>`;
+        
+        if (events.length === 0) {
+            html += `<p style="opacity:0.5; margin-top:20px;">No events scheduled for this day.</p>`;
+        } else {
+            events.forEach(ev => {
+                html += `
+                    <div class="event-item">
+                        <div class="time">${ev.time}</div>
+                        <div class="info">
+                            <h5>${ev.title}</h5>
+                            <p>${ev.location}</p>
+                        </div>
+                    </div>`;
+            });
+        }
+        detailList.innerHTML = html;
+    }
+
+    // 4. 初始化和按钮绑定
+    renderCalendar(currentMonth, currentYear);
+    updateEvents("2026-04-20"); // 默认显示今天的
+
+    const btns = document.querySelectorAll('.cal-btn');
+    if(btns.length >= 2) {
+        btns[0].onclick = () => {
+            currentMonth--;
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            renderCalendar(currentMonth, currentYear);
+        };
+
+        btns[1].onclick = () => {
+            currentMonth++;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            renderCalendar(currentMonth, currentYear);
+        };
+    }
+    </script>
+
+   <section class="visit-section" id="visit">
+        <div class="video-background-wrapper">
+            <div class="video-gradient-overlay"></div>
+            <video autoplay muted loop playsinline class="bg-video-element">
+                <source src="video/sicc-bg-video.mp4" type="video/mp4" >
+            </video>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Plan Your Visit</h2>
+            <div class="visit-content-area">
+                <div class="info-stack-vertical">
+                    <div class="solid-info-card">
+                        <span class="label-gold">OPENING HOURS</span>
+                        <p>Mon - Sun: 09:00 - 18:00</p>
+                    </div>
+                    <div class="solid-info-card">
+                        <span class="label-gold">LOCATION</span>
+                        <p>SICC, Tanjung Lipat, Kota Kinabalu</p>
+                    </div>
+                    <div class="solid-info-card">
+                        <span class="label-gold">GETTING HERE</span>
+                        <p>Bus Routes: 1A, 1B | Parking: B1 & B2</p>
+                    </div>
+                    <div class="solid-info-card cta">
+                        <span class="label-gold">VISITOR GUIDE</span>
+                        <button class="gold-download-btn">Download PDF</button>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="venues-section" id="venues" >
+        <h2 class="section-title">World-Class Venues</h2>
+        <div class="venues-grid">
+            <div class="venue-card">
+                <div class="venue-image">
+                    <img src="image/sipadan hall.png" alt="Sipadan Hall">
+                    <div class="venue-tag">Level 4</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Sipadan Hall</h3>
+                    <p>Perfect for large-scale conventions and banquets.</p>
+                    <div class="venue-meta">
+                        <span><strong>5,000</strong> Max Pax</span>
+                        <span><strong>5,000 sqm</strong> Size</span>
+                    </div>
+                    <button class="btn-outline">View Floor Plan</button>
+                </div>
+            </div>
+
+            <div class="venue-card">
+                <div class="venue-image">
+                    <img src="image/kinabalu hall.png" alt="Kinabalu Hall">
+                    <div class="venue-tag">Level 2</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Kinabalu Hall</h3>
+                    <p>Ideal for exhibitions and massive trade fairs.</p>
+                    <div class="venue-meta">
+                        <span><strong>10,000</strong> Max Pax</span>
+                        <span><strong>9,200 sqm</strong> Size</span>
+                    </div>
+                    <button class="btn-outline">View Floor Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="services-container">
+            <div class="services-header">
+                <h2 class="section-title">Beyond the Venue</h2>
+                <p class="section-subtitle">Comprehensive support services tailored to your event's success.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="Icon/catering.png" alt="Catering"> </div>
+                    <h3>World-Class Catering</h3>
+                    <p>From gala dinners to coffee breaks, our culinary team delivers excellence.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="Icon/tech.png" alt="Technical">
+                    </div>
+                    <h3>Advanced AV & Tech</h3>
+                    <p>High-speed connectivity and state-of-the-art audiovisual equipment.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="Icon/logistic.png" alt="Logistics">
+                    </div>
+                    <h3>Event Logistics</h3>
+                    <p>On-site support to manage freight, storage, and equipment movement.</p>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="Icon/security.png" alt="Security">
+                    </div>
+                    <h3>Safety & Security</h3>
+                    <p>24/7 security monitoring and crowd management for all events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section" id="news">
+        <div class="news-header">
+            <h2 class="section-title">Latest Updates</h2>
+            <a href="#" class="view-all">View All News →</a>
+        </div>
+
+        <div class="news-horizontal-list">
+            <article class="news-card">
+                <div class="news-image-wrapper">
+                    <img src="image/MICE.jpeg" alt="News 1">
+                    <div class="news-date">12 APR 2026</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Achievement</span>
+                    <h3>SICC Wins Best MICE Venue Award 2026</h3>
+                    <p>Celebrating excellence in the regional meetings and exhibitions industry...</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-image-wrapper">
+                    <img src="image/Partnership.jpeg" alt="News 2">
+                    <div class="news-date">05 APR 2026</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Collaboration</span>
+                    <h3>Strategic Partnership with Local Tourism Board</h3>
+                    <p>New initiatives launched to promote Sabah as a premier event destination...</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-image-wrapper">
+                    <img src="image/Highlights.jpg" alt="News 3">
+                    <div class="news-date">28 MAR 2026</div>
+                </div>
+                <div class="news-content">
+                    <span class="news-category">Event</span>
+                    <h3>International Green Energy Summit Highlights</h3>
+                    <p>A look back at the key takeaways from last week's successful summit...</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2 class="section-title">Ready to Host Your Event?</h2>
+                <p>Get in touch with our sales team for a customized proposal and venue tour.</p>
+                
+                <div class="contact-methods">
+                    <div class="method-item">
+                        <span class="method-label">Direct Line</span>
+                        <p>+60 88 123 456</p>
+                    </div>
+                    <div class="method-item">
+                        <span class="method-label">Email Enquiry</span>
+                        <p>info@siccsabah.com</p>
+                    </div>
+                    <div class="method-item">
+                        <span class="method-label">Location</span>
+                        <p>Tanjung Lipat, 88400 Kota Kinabalu, Sabah, Malaysia</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/SICCSABAH/" target="_blank" class="social-icon">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADYUlEQVR4nO2ZzU4TURTHeYHSe2c6idG9r2BYu5GYYOnM9JMCYeXGxBWJaxcVsNAWKi2lgIDAyp1bwiPIA5jwYQyYGCRojBE95k5n2unMnZnOvQPpYk7y33T1+92cO+dMZ2AgrLDCCqsvKzK18zgyufs5MrkHg5O7enZgcMLIOz3bEB03smXKJkTzJG+1IC0bgMaMrOtZA5RrBeeanWRXtaBM4xRn68P+BSb2TiNtcJ/weX/w2AEeZxtaUHblxL9An8DjbAOEzAr4FggMfowfXmAX6A94gU3ACu4Ev+kBb4Cv65e1CTizAihVBaRWIKqUACllPRVAyaoFvq7Fv8BNwGcacC9fgxfrB3BweAxfvl3BxdUvLSdfL+Hw0zlE5QUbPKOAP3jUA/yD51twfH4JboUS8zZ4IV3jEQgAPteEu2PLcHT23RW+I9ANzyHgNqDM8Bsu8GuAMzWYXt2HXgolijZ4Ib3MIhAQfK6pXdj9j0c22LOLH/BwehuwPK+dPIHH2h3ohhdZBIKC1wTUCpxf/LQJPC1/ACFV7e75tB2eUSAYeJKoXILff65tAvenapZ+p8OLqTc8AnzwZDgRAVqJit4uXS1jgk+14NkF8sFslOTZ7nph0+7wYqrKIMCxlKHkknbqrSxANFGkC4zOARp9bcocCGrZBs8hwLbXOLWMV73cOgBRXbTBi0kmAfaljFVgvPAexOSSDZ78xiTgPl2t8KuePe9VQ8+aLWALfIxFgBWebJIsAtd//8EdtUiFjyUXGQR6hW+Dm14ByWqc6ExXcjlpheMzgOOz7QhykQrPIeAfnrbLEwm6wCz1wlrhYyqTgPeAssKb36DME5Y8It0Fqjr8EhU+plY4BDjhyXByF6h6wrML8MCb9hq3OyD2AB9TywwCAcGT1QC7CSQNcGd4ZoEg4Mleg+MOAk9e9QQvKQwCfv7y8NooSa/TSmgLGPAVKryklDgEOOHJU8ZdYNETnl0gAPiWwIyDQKEneElZYBBggO+8QXWvw44CI4We4DkEnKerM7wB3hlQQnxOu7CkZcipaxkpgEhayAZfssFLMpNAMPBOqwH95EtUeEmeZxe4DXhJcYdnEiBfRvoFXpKL/j9w4FR9GKfrpzcDX3aGl83gLXhptPjIt0BYYYUV1sBt1H9ja3+JK6NR4QAAAABJRU5ErkJggg==" alt="facebook">
+                    </a>
+                    <a href="https://www.instagram.com/siccsabah" target="_blank" class="social-icon">
+                        <img src="data:image/png;base64,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" alt="instagram-new">
+                    </a>
+                    <a href="https://www.tiktok.com/@siccsabah" target="_blank" class="social-icon">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEbElEQVR4nO2V/U8TdxzH+Z9oSx/usdfr0SeJwgAZZEF0GjKzSTREbQWGSzYnIZshwKIZJovDZBiICR3YEB37YQNaEIwbdGMgbg7UZAGVUtq+lzugDLgrXFtGl/WdvH5pv3l/Pq9vL72cnGyyySabjIzL5eIdDkfQ6XTigJlxOBwW1QJ2u33W4XAgE7Db7VPJCCCDWP7/CdhsNmQQy6oF8vPzkQ6Kjr+3hXybTXWHIAihAxEQb6/hURie757Ac39aovpIBQry7fsvIAhCTBAEpII4XBQYnX6KjYy62/ABX6Sqx2q1qhewWq0xq9WKVBCHbxeYCoyjhXtHVQ/P85kjIGaw7WscttrVCKyoFuB5PsbzPFJBHC4nIObunR44C4v31GOxWNQLcBwXtVgsSAVxuJKAmIGxSZy75UO552rCHo7jMlNgI33f9OK6uTK9AmazOcpxHFJBHL5d4MXCArZn7Nv7GGLeT9QVVi3AsmzUbDZjL3AWHkdO1aDyk+s42dqF0rMNa59znCQQ+HUuvuzsoXoMfHEL83882xTwrgkkmJGUQGQvyxfXXML5B3NomFiB2zeJ5n4/Wm904XO2XFbgmeDBu+ZDuMQWo7/CA7+nHQ/PfJZ+AYZhIizLIhHHmjqkBd33foI/+GTzRvseYHh9ITmB44wz3lHAWlHDHpZIMEu9AE3TEYZhoMTR8x9Ly132jiK8Gtn6TK8LiMOVBBJ1MztZTauAxeaEZ+ildPMby0ciETz0DWKorRMjde0HL0BR1CpN05Cj7OIV6ZkfmZqVlgqHwxg/3YwXzAV4mVNoYsrQSBdLw+UEqmiHbC+tgLiLagGSJFcpioIc1Tf74b73c3yp4a96pOXddNGWc+JwOYFjlF22l1JA3CWtAjU9ATT3jcSXCpy7hl765I5ztMwv8GdyAhHVAgRBrJIkCTlOdw7ixkAgvtSIpxWfUqU7zglFR9deZOsCoeWQ9EtVUnbZXlIBgiCSEggTBAE5qq7dRqvPHxd4/MMIWuiKHecqm26ifnwZi6+XpXMzU79IAoWkRbaXUMBkMqVXwFVZjY96NwXEfN/tld7I4vcUw6K8sQX1EyE0ekfjZ4a+7MJTphYsSe2/gMlkCptMJsghlp65Pbjj/7/P/xhnu4dRN/ZauvkPewP469Ub6bulpSXMuOrQTZ2Q7TQlJqpawGg0ho1GI5SwFBShw/fjFgHpfRCNIvj7PF69CcU/i8ViGHa3YoG5gDKTVbHTqExSAiu7FbtK3kZwegaJEgqFMNTQLj37TWRpMssjKQGDwbBiMBiwGw5egLejEy+fP9+y+NLiIvx3fQgWN0o3f5Us2bXLoIx6Ab1ev6LX67EXTHoD6olC+N6qxcSJK5gqvYx57iLmmFrcIatQYuD21KNXJravAv+E0xMoMVpQYGBA6A2pLo6kBXQ6XSgvLw8ZQiwpAZ1Ohwwh9l8XgGoBrVYb1Gq1yAQ0Gs1vyQhwGo1mRqPR4CDJzc2dFHdRLZBNNtlkk/Nv5G9kioJHscMNWgAAAABJRU5ErkJggg==" alt="tiktok">
+                    </a>
+                    <a href="https://x.com/siccsabah" target="_blank" class="social-icon">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEc0lEQVR4nO2XyUsjURDG/UPGm9iJL4lLOu5pcSd4ET0oooKCiHhQULyLKCLePIgbiLcZBuNyURAExQW8CXFBPLggijPRiCsub6gi3bSx7bz3omEOKfgOHV/k91VXvarExcUiFrGIxX8bbrc7XlGU34qi3CiKQt1u9zvl5uZqysnJ0ZSdna0pKyvrnTIzMzVlZGRoSk9P1+RyuagsyzeyLHtlWZYigf8L4KHwLOCh8KzgLp1kWQb5ZVmO5zYQzDwTuFnWWcDTQ+CD4Cin0wn6JfIGbiIpFz04a9blj+CotLS0gIiBb69zlwG4ATyK20CU65x+Bg5KTU0VNxBJnQuWCw2FFzIQ7Tp3GmRdVUpKipiBz8Dhzfh8PmoUc3NzTHXe1tZGX19f6erqKj5/Bq6K20C4rFdXV9PHx0f69vZGl5eX6dLSEt3d3UUTXV1dplmvra2l9/f3eB4SFQoeCp+cnCxmIFydDw4OIvDY2BhmvKCggJ6dndGrqyvq8XgMywU+v7i4QHk8HtOsA7gqbgMsdQ5aW1ujLy8vtLGxEbPd1NSEpbGxsYHP+hqHwXhwcEBvb29pVVUVE7jD4UAJGWBp0JKSEur3++np6SnNy8vDbE9OTuKb6e/v1+Dh7ObmJn1+fqYtLS2G4CmfwAsZ4Bn/nZ2dCOz1etEAnIUmf3h4oBUVFWgAmhuit7eXOesOh4Pa7XYUtwHe+3x+fl5rYACurKzEJodGHR0dxb+Nj49zg9sjNcA6/mHtOD4+xgYuLi7G5hwYGNCu14WFhXfwevBkE3ibzYbiNiAy/hsaGrCB19fXtXsd6h6u2ubmZq6s24LgIEKIuAHe8T8xMYEZ7+vrw4zD27i+vsYmh6uZB9wWhBcyIDr+4cze3h59enqi5eXlmPH29nY0NT09/Q7cESbregkZYFlzQwcR9M3+/j6Wzc7ODn4PMj47O4smOjo6uMAJITQpKYnfAC84ZBo+g5UC4NVbCW4gAIYr+ejoCJs8Pz+fCZwE4YUNsKy5+ptlamoKoYeGhvB5ZWUFmxqmNADX1dXhM0xvvQFiAi5sgDXrqrq7uxF+ZmZGq+/CwkLMODQwTHaAHhkZwXM9PT1M4BEZYAGH+m5tbcV9aGtrCw3rGxTWZnVKQ7bh/Pb2Nk7psrIyJnghA0bgRvCwlN3d3dHDw0NcjY0aFN6K2sAAClsofMfn8+H/MAO3Wq0oIQPhtsWioiJ6fn5OLy8vaWlp6Yfxr9Y4zBNo4EAggCs3mIASghgeHjYFFzYQbuGCmob7HvYd+IES7lqsr6/HBoZ1GtaKxcVF3Eyh9GpqakzhhQyYrblgDNYFAIIhxXqfww8fozg5OcGBaQQesQHevYX1WgyXcWtQFosFxW2Adc39LnCrDj4iAyJ7Szhw1qxbIjEgCv4V5WL5IgM30SoXiwk4SJKka24DdrvdG+06t3wEV/VTxIBECPFHs84tH8FpYmLin4SEhB9xIkEIiSeE/CKEBKJRLpIOXJKkAGReGD4WsYhFLOKiEf8Af1P68HbF1egAAAAASUVORK5CYII=" alt="twitterx--v1">
+                    </a>
+                </div>
+            </div>
+
+            <div class="enquiry-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="" disabled selected>Event Type</option>
+                            <option value="exhibition">Exhibition</option>
+                            <option value="convention">Convention</option>
+                            <option value="wedding">Wedding / Banquet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Tell us more about your event..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND ENQUIRY</button>
+                </form>
+            </div>
+        </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+:root{
+  /* Primary Brown  */
+  --primary-brown-light:rgb(254, 247, 233);
+  --primary-brown-light-hover:rgb(254, 243, 221);
+  --primary-brown-active:rgb(252, 231, 185);
+  --primary-brown-main:rgb(246, 177, 30);
+  --primary-brown-main-hover:rgb(221, 159, 27);
+  --primary-brown-main-active:rgb(197, 142, 24);
+  --primary-brown-dark:rgb(185, 133, 23);
+  --primary-brown-dark-hover:rgb(148, 106, 18);
+  --primary-brown-dark-active:rgb(111, 80, 13);
+  --primary-brown-darker:rgb(86, 62, 11);
+
+ /* Secondary Champagne Gold */
+  --secondary-champagne-gold-light:rgb(249, 247, 238);
+  --secondary-champagne-gold-light-hover:rgb(246, 244, 230);
+  --secondary-champagne-gold-light-active:rgb(237, 231, 203);
+  --secondary-champagne-gold-main:rgb(197, 179, 88);
+  --secondary-champagne-gold-main-hover:rgb(177, 161, 79);
+  --secondary-champagne-gold-main-active:rgb(158, 143, 70);
+  --secondary-champagne-gold-dark:rgb(148, 134, 66);
+  --secondary-champagne-gold-dark-hover:rgb(118, 107, 53);
+  --secondary-champagne-gold-dark-active:rgb(89, 81, 40);
+  --secondary-champagne-gold-darker:rgb(69, 63, 31);
+ 
+  
+  /* Accent Sunset Gold */
+  --accent-sunset-gold-light:rgb(251, 244, 230);
+  --accent-sunset-gold-light-hover:rgb(249, 239, 217);
+  --accent-sunset-gold-light-active:rgb(244, 221, 176);
+  --accent-sunset-gold-main:rgb(218, 145, 0);
+  --accent-sunset-gold-main-hover:rgb(196, 131, 0);
+  --accent-sunset-gold-main-active:rgb(174, 116, 0);
+  --accent-sunset-gold-dark:rgb(164, 109, 0);
+  --accent-sunset-gold-dark-hover:rgb(131, 87, 0);
+  --accent-sunset-gold-dark-active:rgb(98, 65, 0);
+  --accent-sunset-gold-darker:rgb(76, 51, 0);
+
+  /* Semantic Success */
+  --semantic-success-light:rgb(232, 245, 233);
+  --semantic-success-main:rgb(30, 142, 62);
+  --semantic-success-main-hover:rgb(21, 115, 49);
+  --semantic-success-dark:rgb(13, 82, 33);
+
+ /* Semantic Error */
+  --semantic-error-light:rgb(254, 235, 238);
+  --semantic-error-main:rgb(217, 48, 37);
+  --semantic-error-main-hover:rgb(183, 28, 28);
+  --semantic-error-dark:rgb(136, 14, 15);
+
+  /* Semantic Warning */
+  --semantic-warning-light:rgb(255, 248, 225);
+  --semantic-warning-main:rgb(249, 168, 37);
+  --semantic-warning-main-hover:rgb(245, 127, 23);
+  --semantic-warning-dark:rgb(191, 54, 12);
+
+  /* Neutral Colors */
+  --neutral-white:rgb(255, 255, 255);
+  --neutral-surface:rgb(248, 247, 242);
+  --neutral-border:rgb(229, 228, 218);
+  --neutral-mutedtext:rgb(146, 144, 132);
+  --neutral-bodytext:rgb(69, 67, 62);
+  --neutral-heading:rgb(28, 27, 25);
+
+  /* Typography */
+  --font-family-primary: 'Montserrat', sans-serif;
+  --font-family-secondary: 'Inter', sans-serif;
+
+  
+  /* Font Sizes */
+  --text-xs: 0.875rem; /* 14px */
+  --text-sm: 1rem;   /* 16px */
+  --text-md: 1.125rem; /* 18px */
+  --text-lg: 1.5rem;  /* 24px */
+  --text-xl: 2rem; /* 32px */
+  --text-2xl: 3rem; /* 48px */
+  --text-3xl: 4rem; /* 64px */
+
+  /* Spacing */
+  --spacing-none: none;
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem;  /* 8px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;  /* 24px */
+  --spacing-xl: 2rem;   /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+
+  /* Border Radius */
+  --border-radius-none: 0;
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-full: 999px;
+
+  /* Shadows */
+  --shadows-none: none;
+  --shadows-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadows-md: 0 12px 24px rgba(0, 0, 0, 0.08);
+  --shadows-lg: 0 24px 48px rgba(0, 0, 0, 0.12);
+}
