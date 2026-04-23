@@ -16,6 +16,10 @@ body {
     letter-spacing: 0.02em; /* 稍微拉大字间距，更有现代感 */
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* 统一样式：让所有 Card 类在悬停时都有细微的光泽变化 */
 .exhibition-card, .venue-card, .service-item, .news-card, .enquiry-form {
     transition: var(--transition-smooth);
@@ -30,36 +34,41 @@ body {
 /* 导航栏主体 */
 .navbar {
     display: flex;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--nav-height);
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%; /* 使用百分比，适配各种屏幕宽度 */
+    padding: 0 05%; /* 使用百分比，适配各种屏幕宽度 */
     z-index: 1000;
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
     background: var(--nav-bg);
     box-sizing: border-box;
     transition: all 0.3s ease;
+    position: fixed;
 }
 
 .nav-logo img {
     height: 50px; /* 减小高度，避免撑破 navbar */
-    width: auto;
-    display: block;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-start;
 }
 
 /* 导航链接列表 */
 .nav-links {
     display: flex;
+    flex: 2;
     align-items: center;
+    justify-content: center;
     list-style: none;
-    gap: 30px;
+    gap: 40px;
     margin: 0;
-    padding: 0;
+    padding-left: 50px; /* 给导航链接留出空间，避免和 logo 太近 */
 }
 
 .nav-links a {
@@ -85,6 +94,8 @@ body {
     border-radius: 20px;
     padding: 5px 15px;
     margin-left: 20px;
+    max-width: 200px; /* 限制搜索框最大宽度，防止过长 */
+    line-height: 30px; /* 让输入框和按钮垂直居中 */
 }
 
 .nav-search input {
@@ -105,7 +116,8 @@ body {
 .search-btn-icon {
     width: 18px;  /* 根据导航栏高度微调 */
     height: 18px;
-    display: block;
+    display: absolute;
+    padding-top: 5px; /* 让图标垂直居中 */
 }
 
 .hero-section {
@@ -187,7 +199,6 @@ body {
     border-radius: var(--border-radius-lg, 8px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
-    border: 2px solid transparent;
 }
 
 .btn-primary:hover {
@@ -260,7 +271,6 @@ body {
 
 .exhibition-card:hover {
     transform: translateY(-10px);
-    border-color: var(--primary-brown-main);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     background: rgba(255, 255, 255, 0.05);
 }
@@ -360,6 +370,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--neutral-white);
 }
 
 .calendar-header h4 {
@@ -379,12 +391,14 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--neutral-white);
 }
 
 .calendar-days-header span {
     font-size: 12px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--neutral-white);
     text-transform: uppercase;
     text-align: center;
 }
@@ -393,6 +407,7 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
+    color: var(--neutral-white);
 }
 
 .day {
@@ -443,6 +458,8 @@ body {
 /* 右侧详情样式 */
 .event-details-list {
     flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--neutral-white);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     padding-left: 40px;
     display: flex;
@@ -534,9 +551,9 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, 
-        #0a0a0a 20%, 
-        rgba(10, 10, 10, 0.6) 40%, 
-        rgba(10, 10, 10, 0) 70%);
+        #0a0a0a 10%, 
+        rgba(10, 10, 10, 0.6) 20%, 
+        rgba(10, 10, 10, 0) 40%);
     z-index: 2;
     pointer-events: none;
 }
@@ -733,6 +750,7 @@ body {
 .btn-outline {
     width: 100%;
     padding: 12px;
+    margin-top: 10px;
     background: transparent;
     border: 1px solid #ffc107;
     color: #ffc107;
@@ -791,7 +809,7 @@ body {
 
 .service-item {
     padding: 45px 30px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--secondary-champagne-gold-light);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     transition: all 0.4s ease;
@@ -801,7 +819,7 @@ body {
 }
 
 .service-item:hover {
-    background: rgba(197, 160, 89, 0.05); /* 淡淡的金色背景 */
+    background: var(--accent-sunset-gold-light-hover); /* 淡淡的金色背景 */
     border-color: var(--primary-brown-main);
     transform: translateY(-10px);
 }
@@ -815,6 +833,12 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.service-icon img {
+    width: 40px;
+    height: 40px;
     transition: 0.3s;
 }
 
@@ -835,14 +859,14 @@ body {
 .service-item h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-    color: #fff;
+    color: var(--neutral-heading);
     margin-bottom: 15px;
 }
 
 .service-item p {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--neutral-text);
     line-height: 1.6;
 }
 
@@ -856,6 +880,11 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 50px;
+}
+
+.news-header a{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .news-section .section-title::after {
@@ -883,8 +912,10 @@ body {
 
 /* --- 横向列表核心配置 --- */
 .news-horizontal-list {
-    display: flex;
-    gap: 80px;
+    display: flex; /* 让它根据内容自动调整宽度 */
+    justify-content: space-between;
+    max-width: 100%;
+    gap: 40px;
     overflow-x: auto; /* 在小屏幕或内容多时允许横向滚动 */
     padding-bottom: 20px;
 }
@@ -892,8 +923,9 @@ body {
 /* 隐藏滚动条（可选，保持整洁） */
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 强制三列 */
     gap: 30px;
+    align-items: stretch; /* 关键：强制所有卡片拉伸到相同高度 */
 }
 
 .news-horizontal-list::-webkit-scrollbar {
@@ -906,26 +938,27 @@ body {
 }
 
 .news-card {
-    background: #161616;
+    background: rgb(69, 67, 62);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 占据父容器分配的所有高度 */
 }
 
 .news-card:hover {
-    background: #1f1f1f;
     transform: translateY(-8px);
 }
 
 .news-image-wrapper {
-    position: relative;
-    width: 100%;
+    width: 500px;
     aspect-ratio: 16 / 9;
     overflow: hidden;
 }
 
 .news-image-wrapper img {
-    width: 100%;
+    width: 500px;
     height: 100%;
     object-fit: cover;
     transition: 0.5s ease;
@@ -936,27 +969,44 @@ body {
 }
 
 .news-date {
-    position: absolute;
+    display: flex;
     bottom: 15px;
     left: 15px;
     background: var(--primary-brown-main);
     color: #000;
-    padding: 4px 10px;
     font-size: 12px;
     font-weight: 700;
     border-radius: 4px;
 }
 .news-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 强制所有子元素靠左对齐 */
 }
 
 .news-category {
     font-size: var(--text-xs);
-    color: #ffc107;
+    color: var(--primary-brown-main);
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
     margin-bottom: 10px;
+    padding-top: 20px;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 顶部对齐 */
+}
+
+.news-content span {
+    font-size: 12px;
+    color: var(--primary-brown-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif ;
+    font-weight: 700;
+    font-size: var(--text-sm);
 }
 
 .news-content h3 {
@@ -965,21 +1015,25 @@ body {
     color: #fff;
     margin-bottom: 12px;
     line-height: 1.4;
-    /* 关键：限制标题为 2 行 */
+
+    /* 核心逻辑：锁定显示两行标题的高度 */
+    height: 2.8em; 
     display: -webkit-box;
-    line-clamp: 2;
+    line-clamp: 2; /* 超过两行显示省略号 */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .news-content p {
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--neutral-white);
     line-height: 1.6;
-    margin-bottom: 15px;
-    /* 限制描述为 3 行 */
+
+    /* 核心逻辑：锁定显示三行描述的高度 */
+    height: 4.8em; 
     display: -webkit-box;
-    line-clamp: 3;
+    line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -987,14 +1041,16 @@ body {
 .contact-section {
     padding: 100px 8%;
     background-color: #0d0d0d;
+    justify-content: space-between; /* 强制两端对齐，中间留白 */
     display: flex;
-    gap: 80px;
+    gap: 40px;
 }
 
 .contact-wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 80px;
+    flex: 1; /* 占据剩余空间 */
+    gap: 100px;
     align-items: flex-start;
 }
 
@@ -1002,14 +1058,12 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 40px;
 }
 
 .contact-info p {
     font-family: 'Inter', sans-serif;
     color: var(--neutral-white);
     font-size: var(--text-sm);
-    margin-top: 5px;
 }
 
 .contact-info .section-title {
@@ -1040,11 +1094,22 @@ body {
     letter-spacing: 1px;
 }
 
+.method-item span{
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--text-xs);
+    color: var(--primary-brown-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 0%;
+}
+
 .method-item p {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     line-height: 1.6;
     transition: 0.3s;
+    margin-top: 0%;
 }
 
 /* --- 表单样式 --- */
@@ -1055,17 +1120,22 @@ body {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    max-width: 550px;
+    margin-left: auto;
+    
+    /* 建议：既然都是跨两列，改用 flex 更稳定 */
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* 使用 margin-bottom 控制间距 */
+    box-sizing: border-box;
 }
 
 .form-group {
     margin-bottom: 25px;
-    color: var(--neutral-bodytext);
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 8px;
 }
 
 .enquiry-form select {
@@ -1083,11 +1153,13 @@ body {
 .enquiry-form input, 
 .enquiry-form select, 
 .enquiry-form textarea {
+    display: block;
     width: 100%;
+    box-sizing: border-box; /* 核心：确保100%宽度包含任何padding */
+    padding: 12px 0; /* 左右 padding 设为 0，防止下划线“缩进”或“溢出” */
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 12px 0;
     color: #fff;
     font-family: 'Inter', sans-serif;
     outline: none;
@@ -1101,17 +1173,32 @@ body {
     background: rgba(197, 160, 89, 0.05);
 }
 
+textarea {
+    /* 核心：宽度设为父容器的 100% */
+    max-width: 100%; /* 确保在任何情况下都不会超出父容器 */
+    
+    /* 确保 padding 不会额外增加总宽度 */
+    box-sizing: border-box; 
+    
+    /* 防止用户随意横向拉伸破坏布局 */
+    resize: vertical; 
+    
+    /* 建议设置一个最大高度，避免无限拉长 */
+    max-height: 300px;
+    min-height: 100px;
+}
+
 .submit-btn {
     width: 100%;
     padding: 15px;
+    box-sizing: border-box; /* 必须加这一行 */
     background: #ffc107;
     border: none;
     color: #000;
     font-weight: 800;
     cursor: pointer;
     border-radius: 8px;
-    margin-top: 20px;
-    transition: transform 0.2s, background 0.3s;
+    margin-top: 10px;
 }
 
 .submit-btn:hover {
@@ -1122,7 +1209,7 @@ body {
 .social-links {
     display: flex;
     gap: 15px; /* 图标之间的间距 */
-    margin-top: 15px; /* 与上方地址的距离 */
+    margin-top: 10px; /* 与上方地址的距离 */
 }
 
 .social-icon img {
@@ -1135,15 +1222,6 @@ body {
     opacity: 1;
     transform: scale(1.1);
     transition: 0.3s;
-}
-
-.footer-bottom {
-    padding: 40px 8%;
-    background: #000;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 @media (max-width: 768px) {
