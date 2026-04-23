@@ -1234,10 +1234,24 @@ textarea {
         position: relative;
     }
 
+    .nav-container .nav-search {
+        display: none; /* 手机端隐藏搜索框 */
+    }
+
+    .logo {
+        display: flex !important; /* 确保容器本身是显示的 */
+        align-items: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: transparent !important; /* 移除可能遮挡的背景色 */
+        order: 1;
+    }
+
     .logo img {
         display: block; /* 确保不是 display: none */
         height: 40px;   /* 固定高度防止撑破导航栏 */
         width: auto;
+        object-fit: contain;
     }
 
     .menu-toggle {
