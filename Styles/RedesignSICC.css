@@ -1231,6 +1231,7 @@ textarea {
         align-items: center;
         padding: 10px 5%;
         height: var(--nav-height);
+        max-height: fit-content;
         position: relative;
     }
 
@@ -1295,9 +1296,9 @@ textarea {
     }
 
     .nav-search {
-        order: -1; /* 让搜索框在菜单项的最上方 */
         width: 85%;
-        margin-bottom: 20px;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 
     .hero-section {
