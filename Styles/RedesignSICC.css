@@ -325,9 +325,14 @@ body {
 }
 
 .events-calendar-section {
-    padding: 80px 8%;
-    background-color: #0a0a0a; /* 深色背景 */
-    color: var(--neutral-white);
+    padding: 100px 8%;
+    background-color: #0a0a0a;
+}
+
+.events-calendar-section .section-title {
+    border-left: 5px solid var(--primary-brown-main);
+    padding-left: 15px;
+    margin-bottom: 50px;
 }
 
 .events-calendar-section .section-title::after {
@@ -336,25 +341,32 @@ body {
 
 .calendar-container {
     display: flex;
-    gap: 50px;
-    background: #1a1a1a;
-    padding: 30px;
-    border-radius: 20px;
+    gap: 40px;
+    background: rgba(26, 26, 26, 0.5);
+    padding: 40px;
+    border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
 }
 
 /* 左侧日历样式 */
 .calendar-grid-wrapper {
-    flex: 1.5;
-    max-width: 400px;
+    flex: 1.2;
+    min-width: 320px;
 }
 
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.calendar-header h4 {
     font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: var(--primary-brown-main);
+    margin: 0;
 }
 
 .calendar-days-header, .calendar-days-grid {
@@ -363,38 +375,60 @@ body {
     text-align: center;
 }
 
+.calendar-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 15px;
+}
+
 .calendar-days-header span {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: #c5a059; /* 你的 Logo 金色 */
-    padding-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .calendar-days-grid {
-    font-family: 'Montserrat', sans-serif;
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 强制 7 列，代表周日到周六 */
-    gap: 5px;
-    margin-top: 10px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
 }
 
 .day {
-    aspect-ratio: 1; /* 保持正方形 */
+    aspect-ratio: 1; /* 强制正方形 */
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    position: relative; /* 为 event-dot 小圆点定位 */
+    color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     border-radius: 50%;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.day:hover {
+    background: rgba(197, 160, 89, 0.2);
+    color: var(--primary-brown-main);
 }
 
 .day.today {
-    background-color: #c5a059; /* 金色 */
+    background: var(--primary-brown-main);
     color: #000;
-    font-weight: bold;
+    font-weight: 700;
 }
+
+.day.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 4px;
+    height: 4px;
+    background: var(--primary-brown-main);
+    border-radius: 50%;
+}   
 
 .cal-btn{
     background: none;
@@ -408,32 +442,48 @@ body {
 
 /* 右侧详情样式 */
 .event-details-list {
-    font-family: 'Montserrat', sans-serif;
     flex: 1;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
-    padding-left: 30px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .event-item {
     display: flex;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.event-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(197, 160, 89, 0.3);
+    transform: translateX(5px);
 }
 
 .event-item .time {
-    color: #c5a059;
+    color: var(--primary-brown-main);
+    font-weight: 700;
     font-size: 14px;
-    min-width: 80px;
-    font-weight: bold;
+    white-space: nowrap;
 }
 
-.event-item h5 { 
-    font-size: 18px; margin-bottom: 5px; 
+.event-item h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    color: #fff;
 }
 
-.event-item p { 
-    font-size: 14px; opacity: 0.6; 
+.event-item p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
 }
 
 .day.selected { 
@@ -443,10 +493,12 @@ body {
 /* 1. 基础 Section */
 .visit-section {
     position: relative;
-    padding: 80px 08%;
+    padding: 100px 8%;
     background-color: #0a0a0a;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
     overflow: hidden;
-    min-height: 500px;
 }
 
 .visit-section .section-title {
@@ -460,22 +512,18 @@ body {
 /* 2. 视频包装层：锁定在右侧 */
 .video-background-wrapper {
     position: absolute;
-    top: 50%;         /* 垂直居中 */
-    right: 5%;        /* 距离右边留一点间距，看起来更精致 */
-    transform: translateY(-50%); 
-    width: 90%;
-    height: auto;     /* 高度随比例自适应 */
-    aspect-ratio: 16 / 9; /* 锁定 16:9 比例，防止变形 */
-    z-index: 2;
-    overflow: hidden;
-    border-radius: 16px; /* 可选：给视频加一点圆角 */
+    top: 0;
+    right: 0;
+    width: 65%; /* 桌面端占据右侧大部分空间 */
+    height: 100%;
+    z-index: 1;
 }
 
 .bg-video-element {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* 关键：确保能看完整个视频画面，不裁剪 */
-    opacity: 0.9;        /* 既然变小了，可以稍微调亮一点 */
+    object-fit: cover;
+    opacity: 0.6; /* 调低透明度，增加高级感 */
 }
 
 /* 3. 关键遮罩：消除生硬边界 */
@@ -483,14 +531,12 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 80%;
+    width: 100%;
     height: 100%;
-    /* 调整渐变，让它在视频左侧边缘消失 */
     background: linear-gradient(to right, 
-        #0a0a0a 0%, 
-        #0a0a0a 15%, 
-        rgba(28, 27, 25, 0.2) 40%, 
-        transparent 100%);
+        #0a0a0a 20%, 
+        rgba(10, 10, 10, 0.6) 40%, 
+        rgba(10, 10, 10, 0) 70%);
     z-index: 2;
     pointer-events: none;
 }
@@ -504,38 +550,41 @@ body {
 
 /* 5. 布局排版 */
 .visit-content-area {
-    display: flex;
-    justify-content: flex-start; /* 强制内容靠左 */
-    margin-top: 40px;
+    position: relative;
+    z-index: 10; /* 确保在视频和遮罩之上 */
+    width: 100%;
+    max-width: 1200px;
 }
 
 .info-stack-vertical {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 380px; /* 固定宽度，防止被视频挤压 */
+    gap: 20px;
+    width: 400px; /* 固定宽度，防止文字散开 */
 }
 
 /* 6. 卡片美化 */
 .solid-info-card {
-    background-color: rgba(38, 37, 35, 0.9);
-    border-left: 4px solid #d4a017;
-    padding: 20px 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(30, 30, 30, 0.9);
+    backdrop-filter: blur(10px);
+    border-left: 4px solid var(--primary-brown-main);
+    padding: 25px;
+    border-radius: 4px 12px 12px 4px;
     transition: transform 0.3s ease;
 }
 
 .solid-info-card:hover {
-    transform: translateX(10px); /* 悬停微动，增加交互感 */
+    transform: translateX(10px);
 }
 
 .label-gold {
-    color: #d4a017;
+    color: var(--primary-brown-main);
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
     display: block;
+    margin-bottom: 10px;
 }
 
 .solid-info-card p{
@@ -563,41 +612,47 @@ body {
 
 /* --- Venues Section 整体容器 --- */
 .venues-section {
-    padding: 80px 8%;
-    background-color: #0a0a0a; /* 深度黑，衔接视频背景 */
-    color: #ffffff;
+    padding: 100px 8%;
+    background-color: #0a0a0a;
 }
-.venues-section .section-title::after {
-    width: 345px; /* 场馆部分的下划线稍微短一点，视觉上更轻盈 */
+
+.venues-section .section-title {
+    border-left: 5px solid var(--primary-brown-main);
+    padding-left: 15px;
+    margin-bottom: 50px;
 }
 
 /* --- 场馆网格布局 --- */
 .venues-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* 核心：使用 auto-fill 配合 minmax，让 1440p 屏幕显示 3-4 列，1080p 显示 3 列 */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
-    margin-top: 40px;
 }
 
 /* --- 场馆卡片设计 --- */
 .venue-card {
-    background: rgba(255, 255, 255, 0.03); /* 极淡的透明度 */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
 }
 
 .venue-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-    border-color: #ffc107; /* 悬停时边框变色，呼应你的主题黄 */
+    transform: translateY(-12px);
+    border-color: var(--primary-brown-main);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 /* --- 图片区域 --- */
 .venue-image {
     position: relative;
-    height: 250px;
+    width: 100%;
+    aspect-ratio: 16 / 10; 
     overflow: hidden;
 }
 
@@ -616,32 +671,34 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: #ffc107;
+    background: var(--primary-brown-main);
     color: #000;
-    padding: 5px 12px;
-    font-size: 0.8rem;
-    font-weight: 700;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 800;
     border-radius: 4px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* --- 文字内容区 --- */
 .venue-info {
     padding: 25px;
+    flex-grow: 1;
 }
 
 .venue-info h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #ffc107; /* 标题使用主题黄 */
+    font-size: 20px;
+    color: var(--primary-brown-main);
+    margin-bottom: 12px;
 }
 
 .venue-info p {
-    font-family: 'inter', sans-serif;
-    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
     line-height: 1.6;
-    color: #cccccc;
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 20px;
 }
 
@@ -649,21 +706,27 @@ body {
 .venue-meta {
     display: flex;
     justify-content: space-between;
-    padding: 15px 0;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
+}
+
+.venue-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .venue-meta span {
-    font-family: 'inter', sans-serif;
-    font-size: 0.85rem;
-    color: #aaaaaa;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
 }
 
 .venue-meta strong {
-    display: block;
-    color: #ffffff;
-    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 16px;
 }
 
 /* --- 按钮设计 --- */
@@ -685,8 +748,8 @@ body {
 }
 
 .services-section {
-    padding: 80px 8%;
-    background-color: #0d0d0d; /* 稍微比 Venues 深一点点，做出层级 */
+    padding: 100px 8%;
+    background-color: #0d0d0d; /* 稍微深一点，与上下板块区分 */
     text-align: center;
 }
 
@@ -694,14 +757,21 @@ body {
     margin-bottom: 60px;
 }
 
-.services-section .section-title::after{
-    width: 350px; /* 服务部分的下划线稍微短一点，视觉上更轻盈 */
-    background: #c5a059;
-    margin: 20px auto 0; /* 居中下划线，并增加与标题的间距 */
+/* 居中标题适配 */
+.services-section .section-title {
+    display: inline-block;
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 60px;
 }
 
-.services-section .section-title{
-    color: var(--neutral-white);
+.services-section .section-title::after {
+    content: '';
+    display: block;
+    width: 80px; /* 居中短线 */
+    height: 4px;
+    background: var(--primary-brown-main);
+    margin: 15px auto 0;
 }
 
 .services-section .section-subtitle {
@@ -714,63 +784,78 @@ body {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 40px;
+    /* 适配：大屏 4 列，小屏自动折行 */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .service-item {
-    padding: 40px 30px;
-    background: var(--primary-brown-light);
-    border-radius: 20px;
+    padding: 45px 30px;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    border-radius: 24px;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .service-item:hover {
-    background: var(--primary-brown-light-hover); /* 淡淡的主题黄透明背景 */
-    border-color: var(--accent-sunset-gold-light-active);
-    transform: scale(1.02);
+    background: rgba(197, 160, 89, 0.05); /* 淡淡的金色背景 */
+    border-color: var(--primary-brown-main);
+    transform: translateY(-10px);
 }
 
 .service-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px;
+    width: 80px;
+    height: 80px;
+    background: rgba(197, 160, 89, 0.1);
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    margin-bottom: 25px;
+    transition: 0.3s;
 }
 
-.service-icon img {
-    width: 64px;
-    height: 64px;
+.service-item:hover .service-icon {
+    background: var(--primary-brown-main);
+    transform: rotate(-5deg) scale(1.1); /* 增加一点俏皮的动态感 */
+}
+
+.service-item:hover .service-icon {
+    background: var(--primary-brown-main);
+    transform: rotate(-5deg) scale(1.1); /* 增加一点俏皮的动态感 */
+}
+
+.service-item:hover .service-icon img {
+    filter: brightness(0); /* 图标变黑，配合金色背景 */
 }
 
 .service-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
 }
 
 .service-item p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    color: var(--neutral-bodytext);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.6;
 }
 
 .news-section {
-    padding: 80px 8%;
+    padding: 100px 8%;
     background-color: #0a0a0a;
 }
 
 .news-header {
-    font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .news-section .section-title::after {
@@ -783,15 +868,17 @@ body {
 }
 
 .view-all {
-    color: #ffc107;
+    color: var(--primary-brown-main);
     text-decoration: none;
-    font-size: 0.9rem;
     font-weight: 600;
-    transition: opacity 0.3s;
+    font-size: 14px;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
 }
 
 .view-all:hover {
-    opacity: 0.8;
+    border-bottom-color: var(--primary-brown-main);
+    padding-right: 5px;
 }
 
 /* --- 横向列表核心配置 --- */
@@ -803,6 +890,12 @@ body {
 }
 
 /* 隐藏滚动条（可选，保持整洁） */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
 .news-horizontal-list::-webkit-scrollbar {
     height: 4px;
 }
@@ -813,43 +906,48 @@ body {
 }
 
 .news-card {
-    flex: 0 0 350px; /* 固定宽度，不收缩 */
     background: #161616;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .news-card:hover {
-    transform: translateY(-5px);
+    background: #1f1f1f;
+    transform: translateY(-8px);
 }
 
 .news-image-wrapper {
     position: relative;
-    height: 200px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
 }
 
 .news-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.news-card:hover .news-image-wrapper img {
+    transform: scale(1.08);
 }
 
 .news-date {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #ffc107;
+    bottom: 15px;
+    left: 15px;
+    background: var(--primary-brown-main);
     color: #000;
-    padding: 4px 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: var(--text-xs);
-    font-weight: 600;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
 }
-
 .news-content {
     padding: 20px;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .news-category {
@@ -862,26 +960,35 @@ body {
 }
 
 .news-content h3 {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
     color: #fff;
-    display: -webkit-box; /* 标题超过两行自动打省略号 */
+    margin-bottom: 12px;
+    line-height: 1.4;
+    /* 关键：限制标题为 2 行 */
+    display: -webkit-box;
     -webkit-line-clamp: 2;
-    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .news-content p {
-    font-size: 0.85rem;
-    color: #888;
-    line-height: 1.5;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    /* 限制描述为 3 行 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .contact-section {
-    padding: 100px 10%;
+    padding: 100px 8%;
     background-color: #0d0d0d;
+    display: flex;
+    gap: 80px;
 }
 
 .contact-wrapper {
@@ -893,6 +1000,9 @@ body {
 
 .contact-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .contact-info p {
@@ -913,7 +1023,9 @@ body {
 }
 
 .method-item {
-    margin-top: 30px;
+    color: var(--primary-brown-main);
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .method-label {
@@ -924,27 +1036,36 @@ body {
     text-transform: uppercase;
     display: block;
     margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
 }
 
 .method-item p {
-    font-family: 'Inter', sans-serif;
-    color: var(--neutral-white);
-    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    line-height: 1.6;
+    transition: 0.3s;
 }
 
 /* --- 表单样式 --- */
 .enquiry-form {
-    flex: 0 0 500px;
+    flex: 1.5;
     background: rgba(255, 255, 255, 0.03);
     padding: 40px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .form-group {
     margin-bottom: 25px;
     color: var(--neutral-bodytext);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .enquiry-form select {
@@ -975,7 +1096,9 @@ body {
 
 .enquiry-form input:focus, 
 .enquiry-form textarea:focus {
-    border-color: #ffc107;
+    outline: none;
+    border-color: var(--primary-brown-main);
+    background: rgba(197, 160, 89, 0.05);
 }
 
 .submit-btn {
@@ -1012,6 +1135,15 @@ body {
     opacity: 1;
     transform: scale(1.1);
     transition: 0.3s;
+}
+
+.footer-bottom {
+    padding: 40px 8%;
+    background: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -1100,5 +1232,184 @@ body {
     
     .card-image {
         aspect-ratio: 16 / 9; /* 手机端海报可以改用横向比例，节省垂直空间 */
+    }
+
+    .events-calendar-section {
+        padding: 60px 5%; /* 缩小内边距，给内容更多空间 */
+    }
+
+    .calendar-container {
+        flex-direction: column; /* 核心：左右变上下 */
+        gap: 30px;
+        padding: 20px; /* 减小卡片内边距 */
+        border-radius: 16px;
+    }
+
+    /* 日历部分占满宽度 */
+    .calendar-grid-wrapper {
+        width: 100%;
+        min-width: unset; /* 取消最小宽度限制 */
+    }
+
+    .calendar-header h4 {
+        font-size: 18px;
+    }
+
+    /* 增大日历格子间距，防止误触 */
+    .calendar-days-grid {
+        gap: 8px;
+    }
+
+    .day {
+        font-size: 13px; /* 稍微缩小字号 */
+    }
+
+    /* 右侧详情列表 */
+    .event-details-list {
+        border-left: none; /* 移除左边框 */
+        border-top: 1px solid rgba(255, 255, 255, 0.1); /* 改为顶边框 */
+        padding-left: 0;
+        padding-top: 25px;
+        width: 100%;
+    }
+
+    .event-item {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .event-item .time {
+        min-width: 60px; /* 缩短时间列宽度 */
+        font-size: 13px;
+    }
+
+    .event-item h5 {
+        font-size: 15px;
+    }
+}
+
+/* 针对极小屏幕 (如 iPhone SE) 的微调 */
+@media (max-width: 380px) {
+    .calendar-days-grid {
+        gap: 4px;
+    }
+    .day {
+        font-size: 12px;
+    }
+
+    .visit-section {
+        flex-direction: column;
+        padding: 0; /* 移除外边距，让视频撑满 */
+        background-color: #0a0a0a;
+    }
+
+    .video-background-wrapper {
+        position: relative; /* 变为相对定位，占位显示 */
+        width: 100%;
+        height: 500px; /* 强制手机端视频高度 */
+        order: 1; /* 视频在上 */
+    }
+
+    .video-gradient-overlay {
+        background: linear-gradient(to bottom, 
+            transparent 60%, 
+            #0a0a0a 100%); /* 渐变改为向下，与底部黑色衔接 */
+    }
+
+    .visit-content-area {
+        padding: 40px 5%;
+        order: 2; /* 内容在下 */
+    }
+
+    .info-stack-vertical {
+        width: 100%;
+    }
+
+    .venues-section {
+        padding: 60px 5%;
+    }
+
+    .venues-grid {
+        grid-template-columns: 1fr; /* 强制单列 */
+        gap: 25px;
+    }
+
+    .venue-card {
+        border-radius: 12px;
+    }
+    
+    .venue-image {
+        aspect-ratio: 16 / 9; /* 手机端稍微扁一点，节省垂直空间 */
+    }
+
+    .services-section {
+        padding: 60px 5%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* 手机端单列，更易于阅读服务描述 */
+        gap: 20px;
+    }
+
+    .service-item {
+        padding: 35px 25px;
+        flex-direction: row; /* 手机端可以尝试横向排版 */
+        align-items: flex-start;
+        text-align: left;
+        gap: 20px;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        margin-bottom: 0;
+    }
+
+    .service-item h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .news-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .news-grid {
+        /* 在手机端开启横向滑动模式 (可选) */
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px; /* 留出滚动条空间 */
+        margin: 0 -5%; /* 负边距实现全屏滚动感 */
+        padding-left: 5%;
+    }
+
+    .news-card {
+        flex: 0 0 280px; /* 锁定卡片宽度 */
+        scroll-snap-align: start;
+    }
+
+    /* 隐藏滚动条但保持滚动功能 */
+    .news-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .contact-section {
+        flex-direction: column;
+        padding: 60px 5%;
+        gap: 50px;
+    }
+
+    .enquiry-form {
+        grid-template-columns: 1fr; /* 表单在手机上单列显示 */
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
     }
 }
