@@ -98,4 +98,7 @@
   --shadows-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadows-md: 0 12px 24px rgba(0, 0, 0, 0.08);
   --shadows-lg: 0 24px 48px rgba(0, 0, 0, 0.12);
+
+  --nav-bg: rgba(10, 10, 10, 0.95);
+    --nav-height: 70px;
 }

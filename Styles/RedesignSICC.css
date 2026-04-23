@@ -29,45 +29,48 @@ body {
 
 /* 导航栏主体 */
 .navbar {
-  display: flex;
-  position: fixed;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 5px;
-  max-height: 4rem;
-  z-index: 1000;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  background: rgba(10, 10, 10, 0.9);
-  background-color: rgb(28, 27, 25, 0.9);
-  transition: background 0.3s ease; 
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* 使用百分比，适配各种屏幕宽度 */
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    background: var(--nav-bg);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-.nav-logo img{
-  height: 75px;
-  width: auto;
-  padding-left: 50px;
-  display: block;
-
+.nav-logo img {
+    height: 50px; /* 减小高度，避免撑破 navbar */
+    width: auto;
+    display: block;
 }
 
 /* 导航链接列表 */
 .nav-links {
     display: flex;
+    align-items: center;
     list-style: none;
-    gap: var(--spacing-xl); /* 使用你的变量定义间距 */
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-left: 40px;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--neutral-white);
-    font-family: var(--font-family-primary); /* 使用 Montserrat */
+    font-family: var(--font-family-primary);
     font-weight: 500;
-    font-size: var(--text-sm);
+    font-size: 14px;
     transition: color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-links a:hover {
@@ -78,23 +81,19 @@ body {
 .nav-search {
     display: flex;
     align-items: center;
-    border: 1px solid var(--neutral-border);
-    border-radius: var(--border-radius-full);
-    padding: 4px 12px;
-    background: var(--neutral-surface);
-    max-width: 200px;
-    max-height: 28px;
-    margin-right: 3%;
-    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-left: 20px;
 }
 
 .nav-search input {
     border: none;
     background: transparent;
+    color: white;
     outline: none;
-    font-size: var(--text-xs);
-    padding: 4px;
-    max-height: 32px;
+    width: 120px;
+    font-size: 12px;
 }
 
 .nav-search button {
@@ -110,55 +109,116 @@ body {
 }
 
 .hero-section {
+    position: relative;
     width: 100%;
-    height: 700px;
+    height: 90vh; /* 使用 vh 确保在不同设备上都有很好的首屏高度 */
+    min-height: 600px;
     
-    /* 关键修改：将渐变改为从左往右，并加深左侧颜色以保护文字 */
+    /* 渐变优化：增加一个底色防止图片加载前白屏，并将渐变调整得更平滑 */
+    background: #1c1b19; 
     background-image: 
-        linear-gradient(to right, rgba(28, 27, 25, 0.9) 0%, rgba(28, 27, 25, 0.2) 60%, transparent 100%), 
+        linear-gradient(to right, 
+            rgba(10, 10, 10, 0.95) 0%, 
+            rgba(10, 10, 10, 0.7) 30%, 
+            rgba(10, 10, 10, 0) 80%), 
         url('../image/sicc.webp'); 
     
     background-size: cover;
-    background-position: center;
+    background-position: center right; /* 图片靠右对齐，留出左边空间给文字 */
     background-repeat: no-repeat;
-    background-attachment: scroll;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;   /* 垂直依然居中 */
-    align-items: flex-start;    /* 水平靠左对齐 */
-    
-    /* 增加左边距，建议与导航栏 Logo 的对齐线一致 */
-    padding-left: 8%; 
+    align-items: center; /* 垂直居中 */
+    padding: 0 8%; 
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .hero-content {
-    text-align: left; /* 确保多行文字本身也是左对齐 */
-    max-width: 1000px; /* 限制宽度，防止文字横跨整个屏幕影响阅读 */
-    padding-left: 5%;
+    z-index: 10;
+    max-width: 800px;
+    /* 入场动画：从左往右滑入并淡入 */
+    animation: heroFadeIn 1s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 .hero-content h1 {
-    font-family: 'Montserrat', sans-serif; /* 使用你引入的高级字体 */
-    font-size: 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(32px, 5vw, 64px); /* 响应式字体大小：最小32px，随屏幕变化，最大64px */
     font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    max-width: 1000px; /* 限制宽度让标题换行，更好看 */
-    text-transform: uppercase; /* 强制大写增加震撼感 */
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-transform: uppercase;
     color: #FFFFFF;
-    /* 增加一点文字阴影，让它在背景上更突出 */
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    mix-blend-mode: screen;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5); 
 }
 
 .hero-content p {
     font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    max-width: 700px; /* 限制宽度让长句子换行，更好看 */
+    font-size: clamp(16px, 1.2vw, 20px);
+    max-width: 600px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 30px;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 32px;
+    background-color: var(--primary-brown-main, #c5a059); /* 使用品牌金 */
+    color: #000;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: var(--border-radius-lg, 8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+    border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--primary-brown-main);
+    border-color: var(--primary-brown-main);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.5);
+}
+
+/* 描边按钮 (用于 secondary action) */
+.btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 32px;
+    background-color: transparent;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius-lg, 8px);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+    background-color: #fff;
+    color: #000;
+    border-color: #fff;
 }
 
 .exhibition-section {
@@ -957,69 +1017,78 @@ body {
     transition: 0.3s;
 }
 
-/* --- 移动端专项适配 (屏幕宽度 < 768px) --- */
 @media (max-width: 768px) {
-    
-    /* 1. 修复 Navbar 走位：隐藏搜索框或改为垂直排列 */
-    .navbar {
-        flex-direction: column;
-        padding: 15px;
-        height: auto;
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
     }
+
+    .menu-toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: var(--primary-brown-main);
+        transition: all 0.3s ease;
+    }
+
+    /* 核心修改：导航栏变全屏菜单 */
     .nav-links {
-        display: none; /* 建议手机端先隐藏导航或改用汉堡菜单 */
-    }
-    .nav-search {
+        position: fixed;
+        left: -100%; /* 默认隐藏在左侧 */
+        top: var(--nav-height);
+        flex-direction: column;
+        background: var(--nav-bg);
         width: 100%;
-        margin-top: 10px;
+        height: calc(100vh - var(--nav-height));
+        text-align: center;
+        transition: 0.3s;
+        padding-top: 50px;
+        gap: 40px;
     }
 
-    /* 2. 强制 9:16 比例：针对视频背景区域 */
-    .visit-section {
-        height: auto;
-        padding-bottom: 20px;
+    /* 激活状态（需要 JS 配合切换 active 类） */
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-search {
+        margin: 0 auto;
+        width: 80%;
+        max-width: none;
+    }
+
+    .hero-section {
+        height: 80vh;
+        background-position: center;
+        padding: 0 5%;
+        justify-content: center; /* 手机端居中排版 */
+        text-align: center;
+        /* 手机端加深整体遮罩，因为背景图会充满整个屏幕 */
+        background-image: 
+            linear-gradient(to bottom, 
+                rgba(10, 10, 10, 0.7) 0%, 
+                rgba(10, 10, 10, 0.8) 100%), 
+            url('../image/sicc.webp');
+    }
+
+    .hero-content {
+        padding-left: 0;
+    }
+
+    .hero-content h1 {
+        margin-bottom: 15px;
+    }
+
+    .hero-cta-group {
+        flex-direction: column; /* 手机端按钮堆叠，方便大拇指点击 */
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
     }
     
-    .video-background-wrapper {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 9 / 16; /* 核心：锁定比例 */
-        overflow: hidden;
-    }
-
-    .bg-video-element {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* 保证视频填满 9:16 区域不留黑边 */
-    }
-
-    /* 3. 修复内容块走位：将 Grid 改为单列 */
-    .exhibition-grid, 
-    .venues-grid, 
-    .services-grid, 
-    .calendar-container,
-    .contact-wrapper {
-        display: flex;
-        flex-direction: column; /* 全部强制转为单列垂直排列 */
-        gap: 20px;
-    }
-
-    /* 4. 日历专项修复：日历在手机端必须占满宽度 */
-    .calendar-grid-wrapper {
-        width: 100%;
-        overflow-x: auto; /* 防止小屏撑破 */
-    }
-    .calendar-days-grid {
-        grid-template-columns: repeat(7, 1fr);
-    }
-    .event-details-list {
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    /* 5. 图片适配 */
-    .venue-image img, .card-image img {
-        width: 100%;
-        height: auto;
+    .btn-primary, .btn-outline-white {
+        width: 100%; /* 满宽按钮在手机上更易触达 */
+        padding: 15px 0;
     }
 }
