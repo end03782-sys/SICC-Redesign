@@ -511,6 +511,7 @@ body {
 .venues-section .section-title::after {
     width: 345px; /* 场馆部分的下划线稍微短一点，视觉上更轻盈 */
 }
+
 /* --- 场馆网格布局 --- */
 .venues-grid {
     display: grid;
@@ -746,6 +747,7 @@ body {
 .news-horizontal-list::-webkit-scrollbar {
     height: 4px;
 }
+
 .news-horizontal-list::-webkit-scrollbar-thumb {
     background: #333;
     border-radius: 10px;
@@ -897,6 +899,7 @@ body {
     color: #ffffff; /* 下拉菜单的文字颜色 */
     padding: 10px;
 }
+
 .enquiry-form input, 
 .enquiry-form select, 
 .enquiry-form textarea {
@@ -950,4 +953,71 @@ body {
     opacity: 1;
     transform: scale(1.1);
     transition: 0.3s;
+}
+
+/* --- 移动端专项适配 (屏幕宽度 < 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. 修复 Navbar 走位：隐藏搜索框或改为垂直排列 */
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        height: auto;
+    }
+    .nav-links {
+        display: none; /* 建议手机端先隐藏导航或改用汉堡菜单 */
+    }
+    .nav-search {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* 2. 强制 9:16 比例：针对视频背景区域 */
+    .visit-section {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    
+    .video-background-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9 / 16; /* 核心：锁定比例 */
+        overflow: hidden;
+    }
+
+    .bg-video-element {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 保证视频填满 9:16 区域不留黑边 */
+    }
+
+    /* 3. 修复内容块走位：将 Grid 改为单列 */
+    .exhibition-grid, 
+    .venues-grid, 
+    .services-grid, 
+    .calendar-container,
+    .contact-wrapper {
+        display: flex;
+        flex-direction: column; /* 全部强制转为单列垂直排列 */
+        gap: 20px;
+    }
+
+    /* 4. 日历专项修复：日历在手机端必须占满宽度 */
+    .calendar-grid-wrapper {
+        width: 100%;
+        overflow-x: auto; /* 防止小屏撑破 */
+    }
+    .calendar-days-grid {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .event-details-list {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* 5. 图片适配 */
+    .venue-image img, .card-image img {
+        width: 100%;
+        height: auto;
+    }
 }
