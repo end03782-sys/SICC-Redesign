@@ -1235,7 +1235,7 @@ textarea {
         height: 80vh;
         background-position: center;
         padding: 0 5%;
-        padding-top: 60px; /* 顶部留出空间给手机状态栏和可能的导航 */
+        padding-top: 30px; /* 顶部留出空间给手机状态栏和可能的导航 */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1340,7 +1340,7 @@ textarea {
     .visit-section {
         position: relative; /* 必须为相对定位 */
         display: block; /* 取消 flex，方便内部绝对定位 */
-        padding: 0;
+        padding: 60px 5%;
         overflow: hidden;
     }
 
@@ -1360,7 +1360,6 @@ textarea {
         width: 100% !important;
         max-width: 100%;
         background: rgba(10, 10, 10, 0.6); /* 添加半透明遮罩，保证文字可读 */
-        backdrop-filter: blur(5px); /* 可选：增加毛玻璃效果提升高级感 */
         padding: 60px 5%;
     }
 
