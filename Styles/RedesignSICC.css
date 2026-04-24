@@ -1216,6 +1216,8 @@ textarea {
     width: 48px; /* 图标大小控制 */
     height: 48px;
     opacity: 0.8;
+    transition: all 0.3s ease;
+    filter: contrast(1.2) brightness(1.5); /* 统一调整图标颜色，保持风格一致 */
 }
 
 .social-icon img:hover {
@@ -1227,12 +1229,11 @@ textarea {
 @media (max-width: 768px) {
     .nav-container {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 5%;
-        height: var(--nav-height);
-        max-height: fit-content;
-        position: relative;
+        padding: 0 15px;
+        height: auto;
     }
 
     .nav-container .nav-search {
@@ -1240,33 +1241,17 @@ textarea {
     }
 
     .logo {
-        display: flex !important; /* 确保容器本身是显示的 */
-        align-items: center;
-        visibility: visible !important;
-        opacity: 1 !important;
-        background: transparent !important; /* 移除可能遮挡的背景色 */
-        order: 1;
-    }
-
-    .logo img {
-        display: block; /* 确保不是 display: none */
-        height: 40px;   /* 固定高度防止撑破导航栏 */
-        width: auto;
-        object-fit: contain;
+        display: none !important;
     }
 
     .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        order: 2; /* 确保在 Flex 布局中排在后面 */
-        z-index: 1001; /* 高于全屏菜单 */
+        display: none !important;
     }
 
     .menu-toggle .bar {
         display: block;
         width: 25px;
         height: 3px;
-        margin: 5px auto;
         background-color: var(--primary-brown-main);
         transition: all 0.3s ease;
     }
@@ -1274,20 +1259,24 @@ textarea {
     /* 核心修改：导航栏变全屏菜单 */
     .nav-links {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* 使用 transform 替代 left 提高流畅度 */
-        transform: translateX(-100%); 
-        transition: transform 0.3s ease;
+        flex-direction: row;
+        justify-content: flex-start !important; /* 从头开始排列 */
         
         /* 确保菜单在顶部条下方 */
-        position: fixed;
-        top: var(--nav-height);
+        position: static;
+        transform: none !important; /* 撤销位移动画 */
         left: 0;
+        right: 0;
         width: 100%;
-        height: calc(100dvh - var(--nav-height));
-        background: var(--nav-bg);
+        height: auto;
+        background: transparent;
         z-index: 1000;
+
+        overflow-x: auto;
+        white-space: nowrap; /* 强制不换行 */
+        -webkit-overflow-scrolling: touch; /* 让滚动在 iOS 上更丝滑 */
+        padding: 5px 5%; /* 两边留出边距，防止第一个字贴边 */
+        gap: 25px; /* 菜单项之间的间距 */
     }
 
     /* 激活状态（需要 JS 配合切换 active 类） */
@@ -1295,10 +1284,22 @@ textarea {
         transform: translateX(0); /* 平滑滑入 */
     }
 
+    .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+    .nav-links a {
+        font-size: 14px;
+        color: var(--text-color);
+        flex-shrink: 0; /* 防止文字被挤压变形 */
+        padding: 5px 0;
+    }    
+
     .nav-search {
-        width: 85%;
-        margin-top: 20px;
-        margin-bottom: 10px;
+        width: 90%;
+        margin: 0 auto 10px auto; /* 居中并留出底部间距 */
+        display: flex;
+        flex: 1; /* 自动填充 */
     }
 
     .hero-section {
@@ -1402,35 +1403,6 @@ textarea {
     .event-item h5 {
         font-size: 15px;
     }
-}
-
-/* 针对极小屏幕 (如 iPhone SE) 的微调 */
-@media (max-width: 380px) {
-    .calendar-days-grid {
-        gap: 4px;
-    }
-    .day {
-        font-size: 12px;
-    }
-
-    .visit-section {
-        flex-direction: column;
-        padding: 0; /* 移除外边距，让视频撑满 */
-        background-color: #0a0a0a;
-    }
-
-    .video-background-wrapper {
-        position: relative; /* 变为相对定位，占位显示 */
-        width: 100%;
-        height: 500px; /* 强制手机端视频高度 */
-        order: 1; /* 视频在上 */
-    }
-
-    .video-gradient-overlay {
-        background: linear-gradient(to bottom, 
-            transparent 60%, 
-            #0a0a0a 100%); /* 渐变改为向下，与底部黑色衔接 */
-    }
 
     .visit-content-area {
         padding: 40px 5%;
@@ -1452,10 +1424,12 @@ textarea {
 
     .venue-card {
         border-radius: 12px;
+        max-width: 50%;
     }
     
     .venue-image {
         aspect-ratio: 16 / 9; /* 手机端稍微扁一点，节省垂直空间 */
+        max-width: fit-content;
     }
 
     .services-section {
@@ -1504,7 +1478,8 @@ textarea {
     }
 
     .news-card {
-        flex: 0 0 280px; /* 锁定卡片宽度 */
+        flex: 0 0 400px; /* 锁定卡片宽度 */
+        flex-direction: row;
         scroll-snap-align: start;
     }
 
@@ -1514,7 +1489,7 @@ textarea {
     }
 
     .contact-section {
-        flex-direction: column;
+        flex-direction: row;
         padding: 60px 5%;
         gap: 50px;
     }
@@ -1527,5 +1502,34 @@ textarea {
         flex-direction: column;
         gap: 20px;
         text-align: center;
+    }
+}
+
+/* 针对极小屏幕 (如 iPhone SE) 的微调 */
+@media (max-width: 380px) {
+    .calendar-days-grid {
+        gap: 4px;
+    }
+    .day {
+        font-size: 12px;
+    }
+
+    .visit-section {
+        flex-direction: column;
+        padding: 0; /* 移除外边距，让视频撑满 */
+        background-color: #0a0a0a;
+    }
+
+    .video-background-wrapper {
+        position: relative; /* 变为相对定位，占位显示 */
+        width: 100%;
+        height: 500px; /* 强制手机端视频高度 */
+        order: 1; /* 视频在上 */
+    }
+
+    .video-gradient-overlay {
+        background: linear-gradient(to bottom, 
+            transparent 60%, 
+            #0a0a0a 100%); /* 渐变改为向下，与底部黑色衔接 */
     }
 }
