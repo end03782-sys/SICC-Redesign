@@ -1256,9 +1256,9 @@ textarea {
     }
 
     .hero-content h1 {
-        margin-top: 150px !important; /* 根据你红色圆圈的具体高度调整数值 */
-        margin-bottom: 20px;         /* 保持与下方描述文字的间距 */
-        font-size: 28px;             /* 移动端缩小字号防止溢出 */
+        margin-top: 50px !important; /* 根据你红色圆圈的具体高度调整数值 */
+        margin-bottom: 120px;         /* 保持与下方描述文字的间距 */
+        font-size: 32px;             /* 移动端缩小字号防止溢出 */
         line-height: 1.2;
         }
 
