@@ -1227,20 +1227,18 @@ textarea {
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        container: none; /* 手机端隐藏导航容器，改用汉堡菜单 */
-    }
-
-    .nav-container
-    .menu-toggle
-    .logo .logo-image{
-        display: none; /* 隐藏原有导航链接 */
+    .nav-container, .navbar {
+        display: none !important;
     }
 
     .hero-section {
         height: 80vh;
         background-position: center;
         padding: 0 5%;
+        padding-top: 60px; /* 顶部留出空间给手机状态栏和可能的导航 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center; /* 手机端居中排版 */
         text-align: center;
         /* 手机端加深整体遮罩，因为背景图会充满整个屏幕 */
@@ -1354,13 +1352,6 @@ textarea {
         height: 400px; /* 强制手机端视频高度 */
         order: 1; /* 视频在上 */
     }
-    
-    .bg-video-element {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.6; /* 调低透明度，增加高级感 */
-    }
 
     .venues-section {
         padding: 60px 5%;
@@ -1454,6 +1445,13 @@ textarea {
 
     .footer-bottom {
         flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 底部链接分两列，方便点击 */
         gap: 20px;
         text-align: center;
     }
