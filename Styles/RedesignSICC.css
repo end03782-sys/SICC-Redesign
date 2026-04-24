@@ -1256,8 +1256,11 @@ textarea {
     }
 
     .hero-content h1 {
-        margin-bottom: 15px;
-    }
+        margin-top: 150px !important; /* 根据你红色圆圈的具体高度调整数值 */
+        margin-bottom: 20px;         /* 保持与下方描述文字的间距 */
+        font-size: 28px;             /* 移动端缩小字号防止溢出 */
+        line-height: 1.2;
+        }
 
     .hero-cta-group {
         flex-direction: column; /* 手机端按钮堆叠，方便大拇指点击 */
@@ -1359,7 +1362,6 @@ textarea {
         z-index: 2; /* 确保内容在视频之上 */
         width: 100% !important;
         max-width: 100%;
-        background: rgba(10, 10, 10, 0.6); /* 添加半透明遮罩，保证文字可读 */
         padding: 60px 5%;
     }
 
