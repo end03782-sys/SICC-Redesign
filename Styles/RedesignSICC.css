@@ -1423,17 +1423,19 @@ textarea {
     }
 
     .news-grid {
-        display: grid !important; 
-        grid-template-columns: 1fr !important; /* 强制单列 */
-        gap: 25px;
-        overflow-x: visible !important; /* 彻底禁用横向滑动 */
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* 核心：强制每一行只有一个卡片 */
+        gap: 30px;                             /* 卡片之间的上下间距 */
+        overflow-x: visible !important;        /* 彻底禁用横向溢出/滑动 */
         padding: 0;
+        margin: 0;
     }
 
     .news-card {
-        width: 100% !important;
-        margin: 0;
-        /* 保持文字信息不变：确保 padding 和 font-size 不被压缩 */
+        width: 100% !important;                /* 卡片宽度撑满容器 */
+        flex: none !important;                 /* 防止 flex 压缩宽度 */
+        display: flex;
+        flex-direction: column;                /* 卡片内部图片和文字上下排列 */
     }
 
     .news-card .card-image {
@@ -1442,25 +1444,28 @@ textarea {
 
     .news-card .card-content {
         padding: 20px 15px; /* 增加文字内容的内边距，提升易读性 */
+        text-align: left;
     }
 
     .contact-section {
         display: flex;
-        flex-direction: column !important; /* 必须改为竖列 */
+        flex-direction: column !important;     /* 容器改为垂直排列 */
+        gap: 40px;
         padding: 60px 5%;
     }
 
     .enquiry-form {
-        display: grid;
-        grid-template-columns: 1fr !important; /* 强制表单内部元素单列 */
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* 表单项全部单列显示 */
         width: 100% !important;
-        max-width: 100%; /* 防止溢出屏幕 */
-        box-sizing: border-box; /* 确保 padding 不增加总宽度 */
+        max-width: 100%;                       /* 强制不超出屏幕宽度 */
+        box-sizing: border-box;                /* 确保 padding 不撑大容器 */
     }
 
     .enquiry-form input, 
-    .enquiry-form textarea {
-        width: 100%;
+    .enquiry-form textarea,
+    .enquiry-form button {
+        width: 100% !important;  /* 确保输入框和按钮不溢出 */
         box-sizing: border-box;
     }
 
