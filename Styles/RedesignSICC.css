@@ -1337,20 +1337,35 @@ textarea {
         font-size: 15px;
     }
 
+    .visit-section {
+        position: relative; /* 必须为相对定位 */
+        display: block; /* 取消 flex，方便内部绝对定位 */
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .video-background-wrapper {
+        position: absolute; /* 绝对定位，铺满整个 section */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* 位于底层 */
+        order: unset; /* 移除之前的 order */
+        }
+
     .visit-content-area {
-        padding: 40px 5%;
-        order: 2; /* 内容在下 */
+        position: relative;
+        z-index: 2; /* 确保内容在视频之上 */
+        width: 100% !important;
+        max-width: 100%;
+        background: rgba(10, 10, 10, 0.6); /* 添加半透明遮罩，保证文字可读 */
+        backdrop-filter: blur(5px); /* 可选：增加毛玻璃效果提升高级感 */
+        padding: 60px 5%;
     }
 
     .info-stack-vertical {
         width: 100%;
-    }
-
-    .video-background-wrapper {
-        position: relative; /* 变为相对定位，占位显示 */
-        width: 100%;
-        height: 400px; /* 强制手机端视频高度 */
-        order: 1; /* 视频在上 */
     }
 
     .venues-section {
@@ -1408,21 +1423,17 @@ textarea {
     }
 
     .news-grid {
-        display: grid; /* 回归网格布局 */
-        grid-template-columns: 1fr; /* 关键：强制单列显示 */
-        gap: 30px; /* 卡片之间的上下间距 */
-        
-        /* 移除横向滑动相关的属性 */
-        overflow-x: visible; 
-        scroll-snap-type: none;
-        margin: 0; /* 恢复正常边距，不再溢出屏幕边缘 */
+        display: grid !important; 
+        grid-template-columns: 1fr !important; /* 强制单列 */
+        gap: 25px;
+        overflow-x: visible !important; /* 彻底禁用横向滑动 */
         padding: 0;
     }
 
     .news-card {
-        width: 100%; /* 卡片占满宽度 */
-        flex: none; /* 撤销之前方案三中的锁定宽度 */
-        scroll-snap-align: none;
+        width: 100% !important;
+        margin: 0;
+        /* 保持文字信息不变：确保 padding 和 font-size 不被压缩 */
     }
 
     .news-card .card-image {
@@ -1434,19 +1445,23 @@ textarea {
     }
 
     .contact-section {
-        flex-direction: row;
+        display: flex;
+        flex-direction: column !important; /* 必须改为竖列 */
         padding: 60px 5%;
-        gap: 50px;
     }
 
     .enquiry-form {
-        grid-template-columns: 1fr; /* 表单在手机上单列显示 */
+        display: grid;
+        grid-template-columns: 1fr !important; /* 强制表单内部元素单列 */
+        width: 100% !important;
+        max-width: 100%; /* 防止溢出屏幕 */
+        box-sizing: border-box; /* 确保 padding 不增加总宽度 */
     }
 
-    .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
+    .enquiry-form input, 
+    .enquiry-form textarea {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .footer-links {
