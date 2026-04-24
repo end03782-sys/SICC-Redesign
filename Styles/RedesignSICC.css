@@ -1424,7 +1424,7 @@ textarea {
 
     .venue-card {
         border-radius: 12px;
-        max-width: 50%;
+        max-width: 90%;
     }
     
     .venue-image {
@@ -1443,7 +1443,7 @@ textarea {
 
     .service-item {
         padding: 35px 25px;
-        flex-direction: row; /* 手机端可以尝试横向排版 */
+        flex-direction: column; /* 手机端可以尝试横向排版 */
         align-items: flex-start;
         text-align: left;
         gap: 20px;
@@ -1462,30 +1462,35 @@ textarea {
     }
 
     .news-header {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: 15px;
     }
 
     .news-grid {
-        /* 在手机端开启横向滑动模式 (可选) */
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 20px; /* 留出滚动条空间 */
-        margin: 0 -5%; /* 负边距实现全屏滚动感 */
-        padding-left: 5%;
+        display: grid; /* 回归网格布局 */
+        grid-template-columns: 1fr; /* 关键：强制单列显示 */
+        gap: 30px; /* 卡片之间的上下间距 */
+        
+        /* 移除横向滑动相关的属性 */
+        overflow-x: visible; 
+        scroll-snap-type: none;
+        margin: 0; /* 恢复正常边距，不再溢出屏幕边缘 */
+        padding: 0;
     }
 
     .news-card {
-        flex: 0 0 400px; /* 锁定卡片宽度 */
-        flex-direction: row;
-        scroll-snap-align: start;
+        width: 100%; /* 卡片占满宽度 */
+        flex: none; /* 撤销之前方案三中的锁定宽度 */
+        scroll-snap-align: none;
     }
 
-    /* 隐藏滚动条但保持滚动功能 */
-    .news-grid::-webkit-scrollbar {
-        display: none;
+    .news-card .card-image {
+        aspect-ratio: 16 / 9; 
+    }
+
+    .news-card .card-content {
+        padding: 20px 15px; /* 增加文字内容的内边距，提升易读性 */
     }
 
     .contact-section {
