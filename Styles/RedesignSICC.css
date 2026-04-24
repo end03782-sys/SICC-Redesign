@@ -1424,7 +1424,7 @@ textarea {
 
     .venue-card {
         border-radius: 12px;
-        max-width: 90%;
+        max-width: 100%;
     }
     
     .venue-image {
@@ -1444,8 +1444,8 @@ textarea {
     .service-item {
         padding: 35px 25px;
         flex-direction: column; /* 手机端可以尝试横向排版 */
-        align-items: flex-start;
-        text-align: left;
+        align-items: center;
+        text-align: center;
         gap: 20px;
     }
 
@@ -1486,7 +1486,7 @@ textarea {
     }
 
     .news-card .card-image {
-        aspect-ratio: 16 / 9; 
+        aspect-ratio: 4 / 3; /* 手机端改用更方正的比例，适合竖屏浏览 */
     }
 
     .news-card .card-content {
@@ -1528,7 +1528,7 @@ textarea {
     .video-background-wrapper {
         position: relative; /* 变为相对定位，占位显示 */
         width: 100%;
-        height: 500px; /* 强制手机端视频高度 */
+        height: 400px; /* 强制手机端视频高度 */
         order: 1; /* 视频在上 */
     }
 
