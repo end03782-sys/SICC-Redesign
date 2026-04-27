@@ -1250,10 +1250,6 @@ textarea {
         transform: translateX(0); /* 滑入 */
     }
 
-    .nav-container, .navbar {
-        display: none !important;
-    }
-
     .hero-section {
         height: 80vh;
         background-position: center;
