@@ -1233,7 +1233,7 @@ textarea {
         right: 0;
         left: auto; /* 取消左侧定位 */
         width: 280px; /* 固定宽度，不再是 100% */
-        height: 100dvh;
+        height: 80dvh;
         background: var(--nav-bg);
         box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* 增加阴影增强悬浮感 */
         
