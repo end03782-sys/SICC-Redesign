@@ -1227,6 +1227,29 @@ textarea {
 }
 
 @media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0; /* 从最顶部开始，覆盖导航栏 */
+        right: 0;
+        left: auto; /* 取消左侧定位 */
+        width: 280px; /* 固定宽度，不再是 100% */
+        height: 100dvh;
+        background: var(--nav-bg);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* 增加阴影增强悬浮感 */
+        
+        transform: translateX(100%); /* 默认隐藏在右侧 */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px; /* 顶部留白，防止被关闭按钮遮挡 */
+    }
+
+    .nav-links.active {
+        transform: translateX(0); /* 滑入 */
+    }
+
     .nav-container, .navbar {
         display: none !important;
     }

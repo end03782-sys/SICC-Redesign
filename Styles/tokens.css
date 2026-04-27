@@ -36,24 +36,6 @@
   --accent-sunset-gold-dark-active:rgb(98, 65, 0);
   --accent-sunset-gold-darker:rgb(76, 51, 0);
 
-  /* Semantic Success */
-  --semantic-success-light:rgb(232, 245, 233);
-  --semantic-success-main:rgb(30, 142, 62);
-  --semantic-success-main-hover:rgb(21, 115, 49);
-  --semantic-success-dark:rgb(13, 82, 33);
-
- /* Semantic Error */
-  --semantic-error-light:rgb(254, 235, 238);
-  --semantic-error-main:rgb(217, 48, 37);
-  --semantic-error-main-hover:rgb(183, 28, 28);
-  --semantic-error-dark:rgb(136, 14, 15);
-
-  /* Semantic Warning */
-  --semantic-warning-light:rgb(255, 248, 225);
-  --semantic-warning-main:rgb(249, 168, 37);
-  --semantic-warning-main-hover:rgb(245, 127, 23);
-  --semantic-warning-dark:rgb(191, 54, 12);
-
   /* Neutral Colors */
   --neutral-white:rgb(255, 255, 255);
   --neutral-surface:rgb(248, 247, 242);
