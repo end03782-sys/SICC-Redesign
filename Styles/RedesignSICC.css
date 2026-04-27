@@ -95,6 +95,7 @@ body {
     padding: 5px 15px;
     margin-left: 20px;
     max-width: 200px; /* 限制搜索框最大宽度，防止过长 */
+    height: 30px;
     line-height: 30px; /* 让输入框和按钮垂直居中 */
 }
 
