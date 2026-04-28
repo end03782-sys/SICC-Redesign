@@ -203,11 +203,10 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: transparent;
-    color: var(--primary-brown-main);
+    background-color: var(--primary-brown-dark-hover);
+    color: var(--neutral-heading);
     border-color: var(--primary-brown-main);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.5);
 }
 
 /* 描边按钮 (用于 secondary action) */
@@ -216,11 +215,11 @@ body {
     align-items: center;
     justify-content: center;
     padding: 12px 32px;
-    background-color: transparent;
-    color: #fff;
+    background-color: var(--neutral-white);
+    color: var(--neutral-heading);
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 16px;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: var(--border-radius-lg, 8px);
@@ -228,9 +227,9 @@ body {
 }
 
 .btn-outline-white:hover {
-    background-color: #fff;
-    color: #000;
-    border-color: #fff;
+    background-color: var(--neutral-heading);
+    color: #fff;
+    border-color: var(--neutral-heading);
 }
 
 .exhibition-section {
@@ -299,6 +298,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    flex: 1;
 }
 
 .card-info h3 {
@@ -318,12 +318,12 @@ body {
 }
 
 .btn-secondary {
-    margin-top: 10px;
+    margin-top: auto;
     align-self: flex-start;
     padding: 10px 24px;
-    background-color: transparent;
+    background-color: var(--primary-brown-main);
     border: 1px solid var(--primary-brown-main);
-    color: var(--primary-brown-main);
+    color: var(--neutral-heading);
     border-radius: 6px;
     font-weight: 600;
     font-size: 14px;
@@ -331,7 +331,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary-brown-main);
+    background-color: var(--accent-sunset-gold-main);
     color: #000;
 }
 
@@ -752,17 +752,18 @@ body {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-    background: transparent;
+    background: #ffc107;
     border: 1px solid #ffc107;
-    color: #ffc107;
-    font-weight: 600;
+    color: var(--neutral-heading);
+    font-weight: 700;
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
-    background: #ffc107;
+    background: var(--accent-sunset-gold-main);
+    border-color: var(--accent-sunset-gold-main);
     color: #000;
 }
 
@@ -883,11 +884,6 @@ body {
     margin-bottom: 50px;
 }
 
-.news-header a{
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-}
-
 .news-section .section-title::after {
     width: 270px; /* 新闻部分的下划线稍微短一点，视觉上更轻盈 */
 }
@@ -895,20 +891,6 @@ body {
 .news-section .section-title {
     color: var(--neutral-white);
     margin: 0;
-}
-
-.view-all {
-    color: var(--primary-brown-main);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    border-bottom: 1px solid transparent;
-    transition: 0.3s;
-}
-
-.view-all:hover {
-    border-bottom-color: var(--primary-brown-main);
-    padding-right: 5px;
 }
 
 /* --- 横向列表核心配置 --- */
