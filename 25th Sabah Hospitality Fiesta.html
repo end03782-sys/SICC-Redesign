@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+        25th Sabah Hospitality Fiesta
+    </title>
+    <link rel="stylesheet" href="Styles/tokens.css">
+    <link rel="stylesheet" href="Styles/RedesignSICC.css">
+    <link rel="stylesheet" href="Styles/25thSabahHospitalityFiesta.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="Icon" type="Icon/png" href="Icon/Frame 1.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+      <nav class="navbar">
+          <div class="nav-logo">
+              <img src="Icon/LOGO.webp" alt="SICC Logo">
+          </div>
+
+          <div class="menu-toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+          </div>
+
+          <ul class="nav-links">
+              <li><a href="#top">Home</a></li>
+              <li><a href="#exhibition">Exhibitions</a></li>
+              <li><a href="#visit">Visit</a></li>  
+              <li><a href="#venues">Venues</a></li>
+          </ul>
+          
+          <div class="nav-search">
+                  <input type="text" placeholder="Search...">
+              </div>
+      </nav>
+
+      <script>
+          const menu = document.querySelector('#mobile-menu');
+          const menuLinks = document.querySelector('.nav-links');
+
+          menu.addEventListener('click', function() {
+              menu.classList.toggle('is-active'); // 汉堡变叉（可选动画）
+              menuLinks.classList.toggle('active'); // 菜单滑入
+          });
+      </script>
+  </body>
+</html>

@@ -5,9 +5,18 @@ html, body {
     overflow-x: hidden;
 }
 
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+    display: none; /* 针对 Chrome, Safari, 和新版 Edge */
+    width: 0 !important; /* 强制宽度为 0 */
+    height: 0 !important;
+}
+
 html {
     scroll-behavior: smooth; /* 点击导航栏平滑跳转 */
     -webkit-font-smoothing: antialiased; /* 文字抗锯齿 */
+    scrollbar-width: none; /* 针对 Firefox */
+    -ms-overflow-style: none; /* 针对 IE 和旧版 Edge */
 }
 
 body {
