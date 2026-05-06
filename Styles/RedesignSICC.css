@@ -25,10 +25,6 @@ body {
     letter-spacing: 0.02em; /* 稍微拉大字间距，更有现代感 */
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
 /* 统一样式：让所有 Card 类在悬停时都有细微的光泽变化 */
 .exhibition-card, .venue-card, .service-item, .news-card, .enquiry-form {
     transition: var(--transition-smooth);
@@ -121,13 +117,6 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.search-btn-icon {
-    width: 18px;  /* 根据导航栏高度微调 */
-    height: 18px;
-    display: absolute;
-    padding-top: 5px; /* 让图标垂直居中 */
 }
 
 .hero-section {
@@ -1186,8 +1175,8 @@ textarea {
     box-sizing: border-box; /* 必须加这一行 */
     background: #ffc107;
     border: none;
-    color: #000;
-    font-weight: 800;
+    color: rgb(0, 0, 0);
+    font-weight: 750;
     cursor: pointer;
     border-radius: 8px;
     margin-top: 10px;

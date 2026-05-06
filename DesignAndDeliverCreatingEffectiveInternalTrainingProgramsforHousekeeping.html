@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Design & Deliver Creating Effective Internal Training Programs for Housekeeping</title>
+    <link rel="stylesheet" href="Styles/tokens.css">
+    <link rel="stylesheet" href="Styles/RedesignSICC.css">
+    <link rel="stylesheet" href="Styles/Housekeeping.css">
+    <!-- 字体与 Meta 保持不变 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="Icon" type="Icon/png" href="Icon/Frame 1.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div class="page-container">
+      <nav class="navbar">
+          <div class="nav-logo">
+              <img src="Icon/LOGO.webp" alt="SICC Logo">
+          </div>
+          <ul class="nav-links">
+              <li><a href="index.html#hero">Home</a></li>
+              <li><a href="index.html#exhibition">Exhibitions</a></li>
+              <li><a href="index.html#visit">Visit</a></li>  
+              <li><a href="index.html#venues">Venues</a></li>
+          </ul>
+          <div class="nav-search">
+              <input type="text" placeholder="Search...">
+          </div>
+      </nav>
+    </div>  
+
+    <div class="main-container">
+        <!-- F-Pattern 建议：文字在左，海报在右（若海报太大，CSS需限制宽度） -->
+        <main class="content-side">
+            <span class="tagline">Master the Art of Internal Excellence</span>
+            <h1>Design & Deliver: Elevate Your Housekeeping Standards</h1>
+            <p class="intro-text">
+                Transform your supervisory skills in a single day. This intensive program bridges the gap between management and execution, empowering leaders to build high-performance teams through structured training and practical coaching.
+            </p>
+
+            <div class="event-meta">
+                <div>
+                    <p class="meta-label">Event Dates</p>
+                    <p class="meta-value">May 15 - 18, 2026</p>
+                </div>
+                <div>
+                    <p class="meta-label">Location</p>
+                    <p class="meta-value">Kota Kinabalu, Sabah</p>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <h3>🛠️ Structured Training Design</h3>
+                    <p>Learn to create training modules that are scalable, effective, and tailored for housekeeping teams.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📢 Practical Coaching Tools</h3>
+                    <p>Equip yourself with the "how-to" of on-the-floor instruction to improve immediate performance.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>✨ Leadership with Clarity</h3>
+                    <p>Move beyond just managing—learn to lead your team with the confidence that ensures consistent 5-star standards.</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="#" class="cta-btn">REGISTER NOW</a>
+                <p class="cta-note">HRD Corp Claimable. Limited seats available for internal supervisors.</p>
+            </div>
+        </main>
+
+        <div class="poster-box">
+            <img src="image/Design & Deliver Creating Effective Internal Training Programs for Housekeeping.webp" alt="SHF 2025">
+        </div>
+    </div>
+
+    <!-- Modal 弹窗结构 -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Event Registration</h2>
+            <form id="registrationForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <select>
+                    <option value="">Select Category</option>
+                    <option value="professional">Professional</option>
+                    <option value="apprentice">Apprentice</option>
+                </select>
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+
+            <div id="successMessage" style="display: none; text-align: center; padding: 20px;">
+                <h3 style="color: #F5A623;">Registration Successful!</h3>
+                <p class="sms">Thank you for joining SHF 2025. We will contact you soon.</p>
+                <button onclick="closeModal()" class="cta-btn" style="margin-top: 15px; padding: 10px 20px;">DONE</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-links');
+        if(menu) {
+            menu.addEventListener('click', function() {
+                menu.classList.toggle('is-active');
+                menuLinks.classList.toggle('active');
+            });
+        }
+
+        // 确保 DOM 加载完成后再执行
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById("registerModal");
+            const btn = document.querySelector(".cta-btn"); 
+            const closeSpan = document.querySelector(".close-btn");
+
+            // 只有当按钮存在时才绑定点击事件
+            if (btn && modal) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止 <a> 标签的默认跳转行为
+                    modal.style.display = "block";
+                    console.log("Modal opened"); // 调试用，可以在控制台看到是否触发
+                });
+            }
+
+            // 点击 X 关闭
+            if (closeSpan) {
+                closeSpan.onclick = function() {
+                    modal.style.display = "none";
+                }
+            }
+
+            // 点击弹窗外部关闭
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        const registrationForm = document.getElementById("registrationForm");
+        const successMessage = document.getElementById("successMessage");
+
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // 阻止表单提交刷新页面
+
+                // 1. 隐藏表单
+                registrationForm.style.display = "none";
+                
+                // 2. 显示成功消息
+                successMessage.style.display = "block";
+
+                // 可选：在这里可以打印数据到控制台检查
+                console.log("Form submitted successfully!");
+            });
+        }
+
+        // 供 "DONE" 按钮调用的关闭函数
+        function closeModal() {
+            const modal = document.getElementById("registerModal");
+            modal.style.display = "none";
+            
+            // 延迟重置表单，防止下次打开直接看到成功消息
+            setTimeout(() => {
+                registrationForm.style.display = "block";
+                successMessage.style.display = "none";
+                registrationForm.reset();
+            }, 500);
+        }
+    </script>
+  </body>
+</html>

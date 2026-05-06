@@ -1,0 +1,285 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+    color: var(--text-light);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    font-family: var(--font-family-primary);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* --- Navbar Styles --- */
+.navbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+    background: var(--nav-bg);
+    transition: all 0.3s ease;
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--neutral-white);
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-gold);
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 5px 15px;
+    height: 35px;
+}
+
+.nav-search input {
+    border: none;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 12px;
+}
+
+/* --- F-Layout Main Container --- */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 8%; /* 增加侧边内边距，防止内容贴边[cite: 1] */
+    margin-top: var(--nav-height);
+    gap: 50px;
+}
+
+/* LEFT: Poster Box (F-Pattern Left Stem) */
+.poster-box {
+    flex: 0 0 50%!important ; /* 固定占据 50% 的宽度 */
+    max-width: 750px !important;
+    max-height: 220vh !important;
+    position: sticky; /* 关键：向下滚动时海报保持可见 */
+    top: var(--nav-height);
+    background-color: #000;
+    overflow: hidden;
+    object-fit: cover;
+    border-right: 1px solid #222; /* 增加微妙的分界感 */
+    flex: 1;
+    order: 1;  /* 图片在右作为视觉补充 */
+}
+
+.poster-box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* RIGHT: Content Side (F-Pattern Horizontal Lines) */
+.content-side {
+    flex: 1.2; /* 给文字更多权重，作为扫描重心 */
+    order: 2;  /* 确保文字在左 */
+}
+
+.tagline {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-brown-main);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 4px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem); /* 响应式字体大小 */
+    line-height: 1.1;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+}
+
+.intro-text{
+    color: rgb(255, 255, 255);
+}
+
+.event-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 24px 0;
+    padding: 12px 0;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.meta-label {
+    color: var(--primary-brown-main);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.meta-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+.features {
+    margin-bottom: 44px;
+}
+
+.feature-item {
+    margin-bottom: 28px;
+}
+
+.feature-item h3 {
+    color: var(--primary-brown-main);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: rgb(255, 255, 255);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* CTA Button */
+.cta-btn {
+    display: inline-block;
+    background: var(--primary-brown-main);
+    color: #000;
+    padding: 18px 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.cta-btn:hover {
+    background: #fff;
+    transform: translateY(-3px);
+}
+
+.cta-note{
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+}
+
+/* 遮罩层 */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999; /* 确保在最上层 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #202020;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    border: 2px solid #F5A623; /* 给个边框更容易看出来 */
+}
+
+.modal-content h2{
+    color: #fff;
+}
+
+/* 关闭按钮 */
+.close-btn {
+    position: absolute;
+    right: 20px; top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* 表单输入框简单美化 */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+}
+
+#registerModal { display: none; } /* 初始状态隐藏 */
+
+.sms{
+    color: #fff;
+}
+
+/* --- Mobile Responsive (768px) --- */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* 手机端切换为垂直流 */
+    }
+
+    .poster-box {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: 400px; /* 手机端海报固定高度，避免过长 */
+        flex: none;
+    }
+
+    .content-side {
+        padding: 40px 24px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .event-meta {
+        grid-template-columns: 1fr; /* 手机端信息改为单列 */
+        gap: 24px;
+    }
+}
