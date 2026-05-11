@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Floor Plan</title>
+    <link rel="stylesheet" href="Styles/tokens.css">
+    <link rel="stylesheet" href="Styles/RedesignSICC.css">
+    <link rel="stylesheet" href="Styles/Level.css">
+    <!-- 字体与 Meta 保持不变 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="Icon" type="Icon/png" href="Icon/Frame 1.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div class="page-container">
+      <nav class="navbar">
+          <div class="nav-logo">
+              <img src="Icon/LOGO.webp" alt="SICC Logo">
+          </div>
+          <ul class="nav-links">
+              <li><a href="index.html#hero">Home</a></li>
+              <li><a href="index.html#exhibition">Exhibitions</a></li>
+              <li><a href="index.html#visit">Visit</a></li>  
+              <li><a href="index.html#venues">Venues</a></li>
+          </ul>
+          <div class="nav-search">
+              <input type="text" placeholder="Search...">
+          </div>
+      </nav>
+    </div>
+
+    <div class="floor-navigator">
+        <div class="btn-group">
+            <a href="Level2.html">
+                <button class="lvl-btn" data-lvl="2">L2</button>
+            </a>
+
+            <a href="Level3.html">
+                <button class="lvl-btn" data-lvl="3">L3</button>
+            </a>
+            
+            <a href="Level4.html">
+                <button class="lvl-btn" data-lvl="4">L4</button>
+            </a>
+            
+            <a href="Level5.html">
+                <button class="lvl-btn active" data-lvl="5">L5</button>
+            </a>
+        </div>
+    </div>
+
+    <section class="venue-showcase">
+        <div class="venue-row">
+            <div class="venue-image">
+                <img src="image/Rafflesia.webp" alt="Rafflesia">
+            </div>
+            <div class="venue-content">
+                <span class="venue-tag">Rafflesia</span>
+                <h2>Rafflesia</h2>
+                <div class="venue-detail-box">
+                    <p>The secondary major convention hub. This pillar-less space is optimized for regional corporate summits, professional trade shows, and high-capacity wedding banquets.</p>
+                    <div class="capacity-grid">
+                        <div class="cap-node"><span>Classroom</span><b>24</b></div>
+                        <div class="cap-node"><span>Banquet</span><b>20</b></div>
+                        <div class="cap-node"><span>Area</span><b>48.30m²</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="venue-row reverse">
+            <div class="venue-image">
+                <img src="image/Klias.webp" alt="Klias">
+            </div>
+            <div class="venue-content">
+                <span class="venue-tag">Klias</span>
+                <h2>Klias</h2>
+                <div class="venue-detail-box">
+                    <p>A professional environment tailored for executive seminars. Features premium acoustic insulation and integrated AV systems for high-stakes business presentations.</p>
+                    <div class="capacity-grid">
+                        <div class="cap-node"><span>Theater</span><b>30</b></div>
+                        <div class="cap-node"><span>U-shape</span><b>9</b></div>
+                        <div class="cap-node"><span>Area</span><b>34.09m²</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="venue-row">
+            <div class="venue-image">
+                <img src="image/Sepilok.webp" alt="Sepilok">
+            </div>
+            <div class="venue-content">
+                <span class="venue-tag">Sepilok</span>
+                <h2>Sepilok</h2>
+                <div class="venue-detail-box">
+                    <p>A dynamic venue designed for medium-scale training sessions. Its modular layout allows for rapid configuration changes to suit various event needs.</p>
+                    <div class="capacity-grid">
+                        <div class="cap-node"><span>Theater</span><b>1,20</b></div>
+                        <div class="cap-node"><span>Classroom</span><b>654</b></div>
+                        <div class="cap-node"><span>Area</span><b>188.70m²</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function switchFloor(lvl) {
+            console.log(`Current Floor: Level ${lvl}`);
+            // 这里未来会写切换地图的代码，例如：
+            // document.querySelector('.map-image').src = `map-lv${lvl}.avif`;
+        }
+
+        const floorButtons = document.querySelectorAll('.lvl-btn');
+
+        floorButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const level = btn.getAttribute('data-lvl');
+                
+                // 定义不同楼层对应的 URL
+                const routes = {
+                    "2": "KinabaluHall.html",
+                    "3": "Level3.html",
+                    "4": "SipadanHall.html",
+                    "5": "Level5.html"
+                };
+
+                // 执行跳转
+                if (routes[level]) {
+                    window.location.href = routes[level];
+                }
+            });
+        });
+    </script>
+  </body>
+</html>

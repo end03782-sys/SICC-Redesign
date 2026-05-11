@@ -82,5 +82,8 @@
   --shadows-lg: 0 24px 48px rgba(0, 0, 0, 0.12);
 
   --nav-bg: rgba(10, 10, 10, 0.95);
-    --nav-height: 70px;
+  --nav-height: 70px;
+
+  --dark-bg: #090909;
+  --accent-gold: #ffaa00;
 }
