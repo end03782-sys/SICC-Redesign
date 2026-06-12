@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="Styles/tokens.css">
     <link rel="stylesheet" href="Styles/RedesignSICC.css">
     <link rel="stylesheet" href="Styles/Level.css">
-    <!-- 字体与 Meta 保持不变 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -147,22 +146,17 @@
 
         floorButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // 1. 切换按钮样式
                 floorButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                // 2. 获取楼层数字
                 const level = btn.getAttribute('data-lvl');
                 
-                // 3. 执行楼层切换逻辑 (此处对接你的 SVG 切换)
                 switchFloor(level);
             });
         });
 
         function switchFloor(lvl) {
             console.log(`Current Floor: Level ${lvl}`);
-            // 这里未来会写切换地图的代码，例如：
-            // document.querySelector('.map-image').src = `map-lv${lvl}.avif`;
         }
     </script>
   </body>

@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="Styles/tokens.css">
     <link rel="stylesheet" href="Styles/RedesignSICC.css">
     <link rel="stylesheet" href="Styles/25thSabahHospitalityFiesta.css">
-    <!-- 字体与 Meta 保持不变 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -32,7 +31,6 @@
     </div>  
 
     <div class="main-container">
-        <!-- F-Pattern 建议：文字在左，海报在右（若海报太大，CSS需限制宽度） -->
         <main class="content-side">
             <span class="tagline">The Stage is Set: SHF 2025 x SHE</span>
             <h1>Celebrate 25 Years of Excellence!</h1>
@@ -77,7 +75,6 @@
         </div>
     </div>
 
-    <!-- Modal 弹窗结构 -->
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -111,29 +108,25 @@
             });
         }
 
-        // 确保 DOM 加载完成后再执行
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById("registerModal");
             const btn = document.querySelector(".cta-btn"); 
             const closeSpan = document.querySelector(".close-btn");
 
-            // 只有当按钮存在时才绑定点击事件
             if (btn && modal) {
                 btn.addEventListener('click', function(e) {
-                    e.preventDefault(); // 阻止 <a> 标签的默认跳转行为
+                    e.preventDefault();
                     modal.style.display = "block";
-                    console.log("Modal opened"); // 调试用，可以在控制台看到是否触发
+                    console.log("Modal opened");
                 });
             }
 
-            // 点击 X 关闭
             if (closeSpan) {
                 closeSpan.onclick = function() {
                     modal.style.display = "none";
                 }
             }
 
-            // 点击弹窗外部关闭
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
@@ -146,25 +139,20 @@
 
         if (registrationForm) {
             registrationForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // 阻止表单提交刷新页面
+                e.preventDefault();
 
-                // 1. 隐藏表单
                 registrationForm.style.display = "none";
                 
-                // 2. 显示成功消息
                 successMessage.style.display = "block";
 
-                // 可选：在这里可以打印数据到控制台检查
                 console.log("Form submitted successfully!");
             });
         }
 
-        // 供 "DONE" 按钮调用的关闭函数
         function closeModal() {
             const modal = document.getElementById("registerModal");
             modal.style.display = "none";
             
-            // 延迟重置表单，防止下次打开直接看到成功消息
             setTimeout(() => {
                 registrationForm.style.display = "block";
                 successMessage.style.display = "none";

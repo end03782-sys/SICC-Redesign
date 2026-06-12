@@ -36,8 +36,8 @@
         const menuLinks = document.querySelector('.nav-links');
 
         menu.addEventListener('click', function() {
-            menu.classList.toggle('is-active'); // 汉堡变叉（可选动画）
-            menuLinks.classList.toggle('active'); // 菜单滑入
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
         });
     </script>
 
@@ -349,7 +349,6 @@
     </section>
 
     <script>
-        // 1. 先定义数据和全局变量 (必须放在最前面)
     const eventData = {
         "2026-04-20": [{ time: "10:00 AM", title: "Tech Design Workshop", location: "Sipadan Hall" }],
         "2026-04-21": [{ time: "09:00 AM", title: "Sabah Hospitality Fiesta", location: "Exhibition Hall" }],
@@ -360,7 +359,6 @@
     let currentMonth = 3; 
     let currentYear = 2026;
 
-    // 2. 核心渲染函数 (独立出来)
     function renderCalendar(month, year) {
         const grid = document.getElementById('calendarGrid');
         const monthYearText = document.querySelector('.calendar-header h3');
@@ -395,9 +393,8 @@
 
             grid.appendChild(dayDiv);
         }
-    } // 这里闭合 renderCalendar
+    }
 
-    // 3. 更新事件函数 (独立出来，不要写在 renderCalendar 里面)
     function updateEvents(dateKey) {
         const detailList = document.querySelector('.event-details-list');
         const events = eventData[dateKey] || [];
@@ -421,9 +418,8 @@
         detailList.innerHTML = html;
     }
 
-    // 4. 初始化和按钮绑定
     renderCalendar(currentMonth, currentYear);
-    updateEvents("2026-04-20"); // 默认显示今天的
+    updateEvents("2026-04-20");
 
     const btns = document.querySelectorAll('.cal-btn');
     if(btns.length >= 2) {
@@ -445,20 +441,17 @@
 
     if (enquiryForm) {
         enquiryForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // 阻止页面刷新
+            e.preventDefault();
 
-            // 直接显示弹窗浮层
-            successMessage.style.display = "flex"; // 注意这里用 flex 为了居中
+            successMessage.style.display = "flex"; 
             
             console.log("Enquiry submitted!");
         });
     }
 
     function closeModal() {
-        // 隐藏弹窗
         successMessage.style.display = "none";
         
-        // 重置表单
         if(enquiryForm) {
             enquiryForm.reset();
         }

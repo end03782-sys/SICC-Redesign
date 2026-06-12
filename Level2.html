@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="Styles/tokens.css">
     <link rel="stylesheet" href="Styles/RedesignSICC.css">
     <link rel="stylesheet" href="Styles/Level.css">
-    <!-- 字体与 Meta 保持不变 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -146,8 +145,6 @@
     <script>
         function switchFloor(lvl) {
             console.log(`Current Floor: Level ${lvl}`);
-            // 这里未来会写切换地图的代码，例如：
-            // document.querySelector('.map-image').src = `map-lv${lvl}.avif`;
         }
 
         const floorButtons = document.querySelectorAll('.lvl-btn');
@@ -156,7 +153,6 @@
             btn.addEventListener('click', () => {
                 const level = btn.getAttribute('data-lvl');
                 
-                // 定义不同楼层对应的 URL
                 const routes = {
                     "2": "KinabaluHall.html",
                     "3": "Level3.html",
@@ -164,7 +160,6 @@
                     "5": "Level5.html"
                 };
 
-                // 执行跳转
                 if (routes[level]) {
                     window.location.href = routes[level];
                 }
